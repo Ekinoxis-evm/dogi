@@ -1,69 +1,491 @@
-import Image from "next/image";
+import Link from 'next/link'
+import { formatMoney, pesosToMinor } from '@/lib/money'
+import { SPACE_BASE_COP, STAY_RULES, quoteStay, suggestedHourly, hourlyRate } from '@/lib/pricing'
+import { PAW_WEIGHTS } from '@/lib/reputation'
+import { getLiveListings, type ListingCard } from './stays/listing-data'
+import {
+  AmenityIcon, CATEGORY_LABEL, Eyebrow, ICONS, Icon, SPACE_LABEL, Star, TierBadge, score,
+} from './stays/ui'
 
-export default function Home() {
+// Data is cached for about a minute inside getLiveListings ('use cache' + cacheLife).
+// With cacheComponents on, that replaces `export const revalidate = 60`, which would
+// fail the build under this config.
+
+const cop = (pesos: number) => formatMoney(pesosToMinor(pesos), 'COP')
+
+const SPACES = Object.values(SPACE_BASE_COP)
+const LOW = Math.min(...SPACES)
+const HIGH = Math.max(...SPACES)
+const range = (stay: 'half_day' | 'full_day' | 'overnight') =>
+  `${cop(quoteStay(LOW, stay, 1).base)}–${cop(quoteStay(HIGH, stay, 1).base)}`
+
+const STAY_TYPES = [
+  { title: 'Por horas', body: 'De 1 a 4 horas. Una reunión, una cita médica, una vuelta rápida.', price: `${cop(LOW)}–${cop(HIGH)}`, unit: '/ hora' },
+  { title: 'Medio día', body: `Hasta ${STAY_RULES.half_day.hours} horas, con una comida y un paseo.`, price: range('half_day'), unit: '' },
+  { title: 'Día completo', body: `Hasta ${STAY_RULES.full_day.hours} horas. Jornadas de trabajo, eventos, paseos de un día.`, price: range('full_day'), unit: '' },
+  { title: 'Noche', body: 'Hasta la mañana siguiente. Vuelos temprano, regresos tarde.', price: range('overnight'), unit: '', dark: true },
+]
+
+const STEPS = [
+  { n: '01', title: 'Crea el pasaporte de tu mascota', body: 'Vacunas, carácter, rutina y veterinario. Lo llenas una vez y lo ve cada anfitrión.' },
+  { n: '02', title: 'Elige anfitrión y horario', body: 'Mira el espacio, las comodidades y el nivel del anfitrión. Reserva desde una hora.' },
+  { n: '03', title: 'Paga seguro', body: 'Con tarjeta, PSE o Nequi a través de Mercado Pago. Ves el total antes de pagar.' },
+  { n: '04', title: 'Recoge y califica', body: 'Al terminar, calificas la estadía. El anfitrión también califica a tu mascota.' },
+]
+
+const TIERS = [
+  { tier: 'new_host' as const, rule: 'Identidad y espacio revisados. Recibe 1 huésped a la vez.', perk: 'Empieza con el precio sugerido' },
+  { tier: 'rising' as const, rule: '3 o más estadías completadas y Paw Score de 4,3 o más.', perk: 'Más visibilidad en Dogi' },
+  { tier: 'trusted' as const, rule: '10 o más estadías, Paw Score de 4,6 o más y certificado de primeros auxilios.', perk: '+5 % sobre el precio sugerido · hasta 3 huéspedes' },
+  { tier: 'pack_leader' as const, rule: '25 o más estadías y Paw Score de 4,8 o más.', perk: '+12 % sobre el precio sugerido · destacado en búsquedas', dark: true },
+]
+
+const AMENITIES = [
+  { id: 'fenced_yard', label: 'Patio cerrado', detail: 'Totalmente encerrado, con la altura indicada' },
+  { id: 'climate', label: 'Clima controlado', detail: 'Aire o ventilación adentro' },
+  { id: 'live_camera', label: 'Cámara en vivo', detail: 'Míralo desde tu celular' },
+  { id: 'walks', label: 'Paseos incluidos', detail: 'Con correa, siempre acompañado' },
+  { id: 'first_aid', label: 'Primeros auxilios', detail: 'Certificado verificado' },
+  { id: 'quiet_room', label: 'Cuarto de descanso', detail: 'Separado de otros huéspedes' },
+  { id: 'meds_diets', label: 'Medicinas y dietas', detail: 'Horarios de comida y dosis' },
+  { id: 'vet_nearby', label: 'Veterinaria cerca', detail: 'Clínica a menos de 2 km' },
+]
+
+const FAQS = [
+  { q: '¿Qué pasa si llego tarde a recogerlo?', a: 'Avísale al anfitrión por el chat de la reserva. El tiempo extra se cobra por cada 30 minutos a la tarifa acordada, nunca como una multa fija.' },
+  { q: '¿Cómo pago?', a: 'Con tarjeta, PSE o Nequi a través de Mercado Pago. Ves el total antes de pagar y no hay cargos escondidos.' },
+  { q: '¿Qué mascotas pueden quedarse?', a: 'Perros, gatos y mascotas pequeñas, según cada anfitrión. Cada perfil muestra qué tamaños acepta y cuántos huéspedes recibe a la vez.' },
+  { q: '¿Y si mi mascota toma medicamentos?', a: 'Anota dosis y horarios en su pasaporte. Los anfitriones con «Medicinas y dietas» confirmaron que pueden darlos a tiempo.' },
+  { q: '¿Puedo conocer al anfitrión antes?', a: 'Sí. Escríbele antes de tu primera reserva; algunos anfitriones piden un encuentro corto antes de la primera estadía.' },
+]
+
+// Pricing example in COP: house with yard + fenced yard + walks, Trusted tier.
+const EX_BASE = SPACE_BASE_COP.house_with_yard
+const EX_YARD = 6000
+const EX_WALKS = 5000
+const EX_SUGGESTED = hourlyRate(suggestedHourly('house_with_yard', [EX_YARD, EX_WALKS], 'standard'), 0, 'trusted')
+
+export default async function Home() {
+  const listings = await getLiveListings(8)
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="bg-surface">
+      {/* Utility bar */}
+      <div className="bg-ink text-white">
+        <div className="mx-auto flex max-w-[1240px] items-center gap-2 px-4 py-2.5 text-sm sm:px-6">
+          <Icon d={ICONS.lock} size={16} className="shrink-0 text-amber" />
+          <span>Pagas seguro con tarjeta, PSE o Nequi a través de Mercado Pago.</span>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </div>
+
+      {/* Hero */}
+      <section className="bg-sunk">
+        <div className="mx-auto grid max-w-[1240px] items-center gap-14 px-4 pb-20 pt-16 sm:px-6 lg:grid-cols-2">
+          <div className="flex flex-col gap-7">
+            <span className="inline-flex items-center gap-2 self-start rounded-full border border-line-strong bg-surface px-3.5 py-2 text-sm font-semibold text-brand">
+              <Icon d={ICONS.clock} size={16} />
+              Estadías cortas · desde una hora hasta una noche
+            </span>
+            <h1 className="font-display text-5xl font-extrabold leading-none tracking-tight text-ink sm:text-6xl">
+              Un lugar seguro y cariñoso para tu mascota, por unas horas o una noche.
+            </h1>
+            <p className="max-w-xl text-lg leading-relaxed text-ink-2 sm:text-xl">
+              Reserva con vecinos verificados que tienen un espacio real para mascotas, para esos momentos en que no
+              puedes llevarla: un turno de trabajo, un matrimonio, un vuelo, una cita médica.
+            </p>
+
+            <form action="#anfitriones" aria-label="Buscar estadías" className="flex flex-col gap-4 rounded-xl bg-surface p-5 shadow-raised">
+              <fieldset className="flex flex-wrap gap-2">
+                <legend className="sr-only">¿Cuánto tiempo?</legend>
+                {['Por horas · 1–4 h', 'Medio día', 'Día completo', 'Noche'].map((label, i) => (
+                  <label key={label}
+                    className="inline-flex min-h-11 cursor-pointer items-center rounded-full border border-line-strong px-4 text-[15px] font-semibold text-ink-2 has-[:checked]:border-brand has-[:checked]:bg-brand has-[:checked]:text-white has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-brand">
+                    <input type="radio" name="estadia" value={i} defaultChecked={i === 1} className="sr-only" />
+                    {label}
+                  </label>
+                ))}
+              </fieldset>
+              <button type="submit"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand px-6 text-base font-bold text-white hover:bg-brand-hover">
+                <Icon d={ICONS.search} size={20} />
+                Ver anfitriones disponibles
+              </button>
+            </form>
+          </div>
+
+          <div className="relative">
+            <div role="img" aria-label="Ilustración: un jardín soleado y cercado"
+              className="relative aspect-square overflow-hidden rounded-2xl bg-brand-tint">
+              <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 h-full w-full" aria-hidden="true">
+                <circle cx="300" cy="90" r="60" className="fill-amber-tint" />
+                <path d="M0 300 C 90 250, 180 280, 260 250 S 400 230, 400 230 V400 H0z" className="fill-line-strong" />
+                <path d="M0 340 C 120 300, 240 330, 400 300 V400 H0z" className="fill-brand/40" />
+              </svg>
+            </div>
+            <div className="absolute -bottom-6 left-4 right-4 flex items-start gap-3 rounded-lg bg-surface p-4 shadow-pop sm:left-auto sm:right-6 sm:max-w-xs">
+              <Icon d={ICONS.camera} size={28} className="shrink-0 text-amber-deep" />
+              <span className="text-sm leading-snug text-ink-2">
+                <strong className="text-ink">Mensajes durante la estadía</strong>
+                <br />
+                Tu anfitrión te cuenta cómo va: llegada, comida y recogida.
+              </span>
+            </div>
+          </div>
         </div>
-      </main>
+      </section>
+
+      {/* Trust strip */}
+      <section aria-label="Por qué Dogi" className="border-b border-line">
+        <div className="mx-auto grid max-w-[1240px] gap-6 px-4 py-8 sm:grid-cols-2 sm:px-6 lg:grid-cols-4">
+          {[
+            { icon: ICONS.id, title: 'Anfitriones verificados', body: 'Revisamos identidad y dirección antes de la primera reserva.' },
+            { icon: ICONS.home, title: 'Espacio revisado', body: 'Cercas, riesgos y salidas revisados con fotos.' },
+            { icon: ICONS.lock, title: 'Pago seguro', body: 'Tarjeta, PSE o Nequi con Mercado Pago. Sin efectivo.' },
+            { icon: ICONS.camera, title: 'Siempre al tanto', body: 'Chat con el anfitrión en cada reserva.' },
+          ].map((t) => (
+            <div key={t.title} className="flex items-start gap-3.5">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-sunk text-brand">
+                <Icon d={t.icon} size={24} />
+              </span>
+              <div>
+                <strong className="block text-[17px]">{t.title}</strong>
+                <span className="text-[15px] leading-normal text-muted">{t.body}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Stay types */}
+      <section id="estadias" className="pb-10 pt-24">
+        <div className="mx-auto flex max-w-[1240px] flex-col gap-10 px-4 sm:px-6">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div className="flex max-w-2xl flex-col gap-3">
+              <Eyebrow>Estadías a la medida de tu día</Eyebrow>
+              <h2 className="font-display text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
+                Reserva justo el tiempo que necesitas. Nada más.
+              </h2>
+            </div>
+            <a href="#precios" className="inline-flex min-h-11 items-center gap-1.5 font-bold">
+              Cómo sugerimos los precios <Icon d={ICONS.arrow} size={18} />
+            </a>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {STAY_TYPES.map((s) => (
+              <article key={s.title}
+                className={`flex flex-col gap-3.5 rounded-xl p-7 ${s.dark ? 'bg-ink text-white' : 'bg-sunk text-ink'}`}>
+                <span className="font-display text-[26px] font-bold">{s.title}</span>
+                <span className={`text-base leading-normal ${s.dark ? 'text-line' : 'text-muted'}`}>{s.body}</span>
+                <span className={`mt-auto text-[15px] ${s.dark ? 'text-line' : 'text-muted'}`}>
+                  Sugerido <strong className={`text-lg ${s.dark ? 'text-white' : 'text-ink'}`}>{s.price}</strong> {s.unit}
+                </span>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section className="py-18">
+        <div className="mx-auto flex max-w-[1240px] flex-col gap-9 px-4 sm:px-6">
+          <h2 className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl">Cómo funciona</h2>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {STEPS.map((s) => (
+              <div key={s.n} className="flex flex-col gap-3.5 border-t-2 border-ink pt-5">
+                <span className="font-display text-[44px] font-extrabold leading-none text-brand">{s.n}</span>
+                <strong className="text-xl">{s.title}</strong>
+                <span className="text-base leading-relaxed text-muted">{s.body}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Hosts */}
+      <section id="anfitriones" className="scroll-mt-4 bg-canvas py-22">
+        <div className="mx-auto flex max-w-[1240px] flex-col gap-9 px-4 sm:px-6">
+          <div className="flex flex-col gap-3">
+            <Eyebrow>Cerca de ti</Eyebrow>
+            <h2 className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl">
+              {listings.length ? 'Anfitriones con cupo' : 'Muy pronto, anfitriones cerca de ti'}
+            </h2>
+          </div>
+          {listings.length ? (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {listings.map((l) => <HostCard key={l.id} l={l} />)}
+            </div>
+          ) : (
+            <EmptyHosts />
+          )}
+        </div>
+      </section>
+
+      {/* Reputation */}
+      <section id="reputacion" className="py-24">
+        <div className="mx-auto grid max-w-[1240px] gap-14 px-4 sm:px-6 lg:grid-cols-2">
+          <div className="flex flex-col gap-5">
+            <Eyebrow>Confianza y reputación</Eyebrow>
+            <h2 className="font-display text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
+              La reputación se gana estadía por estadía, de los dos lados.
+            </h2>
+            <p className="text-lg leading-relaxed text-ink-2">
+              Cada reserva completada cierra con una calificación en ambas direcciones. Los anfitriones ganan un{' '}
+              <strong className="text-ink">Paw Score</strong> y suben de nivel; las mascotas construyen un historial de{' '}
+              <strong className="text-ink">buen huésped</strong> que les abre más puertas. Solo califican estadías
+              pagadas y completadas, así que no se pueden comprar ni inventar.
+            </p>
+            <div className="flex flex-col gap-3.5 rounded-xl bg-canvas p-6">
+              <strong className="text-lg">De qué está hecho el Paw Score</strong>
+              {(Object.keys(PAW_WEIGHTS) as (keyof typeof PAW_WEIGHTS)[]).map((k) => {
+                const w = PAW_WEIGHTS[k]
+                return (
+                  <div key={k} className="grid grid-cols-[minmax(0,10rem)_1fr_3rem] items-center gap-3 text-[15px]">
+                    <span className="font-semibold">{CATEGORY_LABEL[k]}</span>
+                    <span className="h-2 rounded-full bg-sunk-2">
+                      <span className="block h-2 rounded-full bg-brand" style={{ width: `${(w / PAW_WEIGHTS.pet_care) * 100}%` }} />
+                    </span>
+                    <span className="text-right font-bold">{Math.round(w * 100)} %</span>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+          <div className="flex flex-col gap-3.5">
+            <strong className="text-lg">Niveles de anfitrión</strong>
+            {TIERS.map((t) => (
+              <div key={t.tier}
+                className={`flex flex-col gap-2 rounded-lg border p-5 ${t.dark ? 'border-ink bg-ink text-white' : 'border-line bg-surface'}`}>
+                <TierBadge tier={t.tier} className="self-start" />
+                <span className={`text-base leading-normal ${t.dark ? 'text-line' : 'text-ink-2'}`}>{t.rule}</span>
+                <span className={`text-sm font-semibold ${t.dark ? 'text-amber' : 'text-brand'}`}>{t.perk}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Amenities */}
+      <section className="bg-sunk py-22">
+        <div className="mx-auto flex max-w-[1240px] flex-col gap-9 px-4 sm:px-6">
+          <div className="flex max-w-2xl flex-col gap-3">
+            <Eyebrow>Comodidades</Eyebrow>
+            <h2 className="font-display text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
+              Encuentra el espacio que tu mascota de verdad necesita.
+            </h2>
+          </div>
+          <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+            {AMENITIES.map((a) => (
+              <div key={a.id} className="flex flex-col gap-2 rounded-lg bg-surface p-5 shadow-card">
+                <span className="text-brand"><AmenityIcon id={a.id} size={28} /></span>
+                <strong className="text-base">{a.label}</strong>
+                <span className="text-sm text-muted">{a.detail}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Fair pricing */}
+      <section id="precios" className="py-24">
+        <div className="mx-auto grid max-w-[1240px] items-center gap-14 px-4 sm:px-6 lg:grid-cols-2">
+          <div className="flex flex-col gap-5">
+            <Eyebrow>Precios justos</Eyebrow>
+            <h2 className="font-display text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
+              Justo para el anfitrión. Claro para ti.
+            </h2>
+            <p className="text-lg leading-relaxed text-ink-2">
+              Sugerimos un precio para cada espacio según lo que de verdad ofrece: el tipo de espacio, sus comodidades,
+              el nivel del anfitrión y la demanda en el barrio. El anfitrión puede ajustarlo un poco, y tú siempre ves
+              el total antes de reservar.
+            </p>
+            <ul className="flex flex-col gap-3.5 text-base leading-normal">
+              {[
+                ['El anfitrión recibe el 90 %', 'del precio de la estadía. El 10 % cubre pagos, soporte y la garantía.'],
+                ['Más horas, menos por hora:', 'las estadías largas salen más baratas por hora.'],
+                ['Recoger tarde se cobra por cada 30 minutos', 'a la tarifa acordada, nunca como multa fija.'],
+              ].map(([b, rest]) => (
+                <li key={b} className="flex gap-3">
+                  <Icon d={ICONS.check} size={22} className="shrink-0 text-brand" />
+                  <span><strong>{b}</strong> {rest}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="flex flex-col gap-5 rounded-xl border border-line bg-surface p-7 shadow-raised">
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <strong className="text-lg">Ejemplo de sugerencia</strong>
+              <span className="text-sm text-muted">Tarifa por hora · 1 perro mediano</span>
+            </div>
+            <dl className="flex flex-col text-[15px]">
+              {[
+                ['Casa con patio · base', cop(EX_BASE)],
+                ['Patio cerrado', `+ ${cop(EX_YARD)}`],
+                ['Paseos incluidos', `+ ${cop(EX_WALKS)}`],
+                ['Nivel De confianza', '+ 5 %'],
+              ].map(([k, v]) => (
+                <div key={k} className="flex justify-between gap-3 border-b border-sunk-2 py-2.5">
+                  <dt className="text-ink-2">{k}</dt>
+                  <dd>{v}</dd>
+                </div>
+              ))}
+              <div className="flex justify-between gap-3 pt-3.5 text-lg">
+                <dt className="font-bold">Precio sugerido</dt>
+                <dd className="font-bold">{cop(EX_SUGGESTED)} / hora</dd>
+              </div>
+            </dl>
+            <Link href="/host/onboarding"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand px-6 font-bold text-white hover:bg-brand-hover hover:text-white">
+              Calcula el precio de tu espacio <Icon d={ICONS.arrow} size={18} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Become a host */}
+      <section id="hospeda" className="px-4 pb-24 sm:px-6">
+        <div className="mx-auto grid max-w-[1240px] overflow-hidden rounded-2xl bg-brand lg:grid-cols-2">
+          <div className="flex flex-col gap-5 p-8 text-white sm:p-14">
+            <h2 className="font-display text-4xl font-extrabold leading-none tracking-tight sm:text-5xl">
+              ¿Tienes un espacio para mascotas? Gana con las horas que pasas en casa.
+            </h2>
+            <p className="text-lg leading-relaxed text-brand-tint">
+              Tú pones el horario, las mascotas que aceptas y cuántas a la vez. El registro toma unos 15 minutos;
+              apareces en Dogi cuando aprobamos tu identidad y tu espacio.
+            </p>
+            <div className="mt-2 flex flex-wrap gap-3">
+              <Link href="/host/onboarding"
+                className="inline-flex min-h-13 items-center rounded-full bg-surface px-6 font-bold text-ink hover:bg-sunk hover:text-ink">
+                Empieza a hospedar
+              </Link>
+              <a href="#reputacion"
+                className="inline-flex min-h-13 items-center rounded-full border-2 border-brand-tint/60 px-6 font-bold text-white hover:bg-brand-hover hover:text-white">
+                Cómo funcionan los niveles
+              </a>
+            </div>
+          </div>
+          <div aria-hidden="true" className="relative min-h-75 bg-brand-tint">
+            <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 h-full w-full">
+              <circle cx="80" cy="70" r="40" className="fill-amber-tint" />
+              <path d="M0 220 C 100 180, 220 230, 400 190 V300 H0z" className="fill-line-strong" />
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="ayuda" className="bg-canvas py-22">
+        <div className="mx-auto flex max-w-[880px] flex-col gap-7 px-4 sm:px-6">
+          <h2 className="font-display text-4xl font-extrabold tracking-tight">Lo que preguntan los tutores</h2>
+          <div className="flex flex-col">
+            {FAQS.map((f, i) => (
+              <details key={f.q} open={i === 0} className="group border-b border-line">
+                <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 py-5 text-lg font-bold text-ink [&::-webkit-details-marker]:hidden">
+                  <span>{f.q}</span>
+                  <Icon d={ICONS.chevron} size={22} className="shrink-0 transition-transform group-open:rotate-180" />
+                </summary>
+                <p className="mb-5 max-w-3xl text-[17px] leading-relaxed text-ink-2">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-line bg-surface">
+        <div className="mx-auto flex max-w-[1240px] flex-col gap-8 px-4 py-12 sm:px-6">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="flex flex-col gap-2">
+              <span className="font-display text-xl font-extrabold">Dogi</span>
+              <span className="text-[15px] text-muted">Estadías cortas y seguras para mascotas, con vecinos verificados.</span>
+            </div>
+            <FooterNav title="Tutores" links={[['#anfitriones', 'Encuentra una estadía'], ['/pets/new', 'Crea el pasaporte de tu mascota'], ['#reputacion', 'Confianza y reputación']]} />
+            <FooterNav title="Anfitriones" links={[['/host/onboarding', 'Publica tu espacio'], ['#precios', 'Guía de precios'], ['#reputacion', 'Niveles de anfitrión']]} />
+            <FooterNav title="Ayuda" links={[['#ayuda', 'Preguntas frecuentes'], ['/chat', 'Pregúntale a Dogi']]} />
+          </div>
+          <div className="flex flex-wrap justify-between gap-2 border-t border-line pt-6 text-sm text-muted">
+            <span>© 2026 Dogi · Medellín, Colombia</span>
+            <span>Pagos procesados por Mercado Pago</span>
+          </div>
+        </div>
+      </footer>
     </div>
-  );
+  )
+}
+
+function HostCard({ l }: { l: ListingCard }) {
+  return (
+    <Link href={`/stays/${l.id}`}
+      className="group flex flex-col overflow-hidden rounded-xl bg-surface text-ink shadow-card hover:text-ink hover:no-underline hover:shadow-raised">
+      <div className="relative h-50 bg-brand-tint">
+        {l.photoUrl && (
+          // eslint-disable-next-line @next/next/no-img-element -- storage URLs; next.config has no remotePatterns yet
+          <img src={l.photoUrl} alt={`Espacio de ${l.hostFirstName} en ${l.neighbourhood}`} className="h-full w-full object-cover" />
+        )}
+        <TierBadge tier={l.tier} className="absolute left-3.5 top-3.5 shadow-card" />
+      </div>
+      <div className="flex flex-1 flex-col gap-2.5 p-5">
+        <div className="flex items-baseline justify-between gap-2">
+          <strong className="text-lg group-hover:underline">{l.hostFirstName}</strong>
+          <span className="inline-flex items-center gap-1 text-[15px] font-bold">
+            <Star />
+            {l.reviews ? score(l.pawScore) : 'Nuevo'}
+          </span>
+        </div>
+        <span className="text-[15px] text-muted">{SPACE_LABEL[l.space]} · {l.neighbourhood}</span>
+        {l.amenities.length > 0 && (
+          <div className="flex flex-wrap gap-1.5">
+            {l.amenities.slice(0, 3).map((a) => (
+              <span key={a.id} className="rounded-full bg-sunk px-2.5 py-1 text-[13px] font-semibold text-brand">{a.label}</span>
+            ))}
+          </div>
+        )}
+        <div className="mt-auto flex items-center justify-between border-t border-sunk-2 pt-2.5">
+          <span className="text-[15px] text-muted">
+            <strong className="text-lg text-ink">{formatMoney(l.hourlyMinor, 'COP')}</strong> / hora
+          </span>
+          <span className="text-sm font-bold text-brand">{l.stays} {l.stays === 1 ? 'estadía' : 'estadías'}</span>
+        </div>
+      </div>
+    </Link>
+  )
+}
+
+function EmptyHosts() {
+  return (
+    <div className="flex flex-col items-start gap-5 rounded-xl border border-line bg-surface p-8 shadow-card sm:p-12">
+      <span className="flex h-14 w-14 items-center justify-center rounded-lg bg-brand-tint text-brand">
+        <Icon d={ICONS.home} size={28} />
+      </span>
+      <h3 className="font-display text-3xl font-extrabold tracking-tight">Estamos abriendo en Laureles</h3>
+      <p className="max-w-2xl text-lg leading-relaxed text-ink-2">
+        Estamos verificando a los primeros anfitriones del barrio. Si tienes un espacio para mascotas y pasas tiempo
+        en casa, sé de los primeros en recibir huéspedes.
+      </p>
+      <div className="flex flex-wrap gap-3">
+        <Link href="/host/onboarding"
+          className="inline-flex min-h-12 items-center rounded-full bg-brand px-6 font-bold text-white hover:bg-brand-hover hover:text-white">
+          Quiero ser anfitrión
+        </Link>
+        <Link href="/pets/new"
+          className="inline-flex min-h-12 items-center rounded-full border border-line-strong bg-surface px-6 font-bold text-ink hover:bg-sunk hover:text-ink">
+          Crea el pasaporte de tu mascota
+        </Link>
+      </div>
+    </div>
+  )
+}
+
+function FooterNav({ title, links }: { title: string; links: [string, string][] }) {
+  return (
+    <nav aria-label={title} className="flex flex-col gap-1">
+      <strong className="mb-1 text-[15px]">{title}</strong>
+      {links.map(([href, label]) =>
+        href.startsWith('#') ? (
+          <a key={label} href={href} className="inline-flex min-h-11 items-center text-[15px]">{label}</a>
+        ) : (
+          <Link key={label} href={href} className="inline-flex min-h-11 items-center text-[15px]">{label}</Link>
+        ),
+      )}
+    </nav>
+  )
 }
