@@ -1,7 +1,7 @@
 # Dogi
 
 Pet stays by the hour with verified neighbours — Laureles, Medellín first.
-DogChain (2025, `../dogchain`) is the legacy version; Dogi is the app. Same idea, rebuilt without crypto.
+DogChain (2025) is the legacy version (local code deleted 2026-10-27); Dogi is the app. Same idea, rebuilt without crypto.
 
 - **Live (planned):** https://dogi.ekinoxis.xyz
 - **Design:** https://claude.ai/artifact/WJYEt32jxc381VosF8czS4 (copies in `design/`), tokens in `DESIGN.md`
