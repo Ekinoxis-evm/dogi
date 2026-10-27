@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DogChain — Pet passport onboarding</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&amp;family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F6F8F7;color:#13261F;font-family:'Figtree',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#1E5B45;text-decoration:none}a:hover{color:#123B2C;text-decoration:underline}
+button{font-family:inherit;cursor:pointer}
+input,select,textarea{font-family:inherit}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 1400px; background: #F6F8F7; font-family: 'Figtree', system-ui, sans-serif; color: #13261F">
+
+<header style="background: #FFFFFF; border-bottom: 1px solid #DCE4DF">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center">
+    <a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; color: #13261F">
+      <span style="width: 36px; height: 36px; border-radius: 10px; background: #1E5B45; display: flex; align-items: center; justify-content: center">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="10" r="2"></circle><circle cx="9.5" cy="5.5" r="2"></circle><circle cx="14.5" cy="5.5" r="2"></circle><circle cx="18.5" cy="10" r="2"></circle><path d="M12 11c-3 0-6 4.5-6 7a3 3 0 0 0 3 3c1.2 0 2-.6 3-.6s1.8.6 3 .6a3 3 0 0 0 3-3c0-2.5-3-7-6-7z"></path></svg>
+      </span>
+      <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 21px">DogChain <span style="font-weight: 600; color: #4F5F58">· Pet passport</span></span>
+    </a>
+    <a href="Main.dc.html" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid #C9D6CF; color: #13261F; font-weight: 600; display: inline-flex; align-items: center">Save and exit</a>
+  </div>
+  <div style="height: 4px; background: #E6ECE8"><div style="height: 4px; width: {{progressPct}}; background: #1E5B45"></div></div>
+</header>
+
+<div style="max-width: 1200px; margin: 0 auto; padding: 40px 24px 64px; display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
+
+  <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+    <!-- Stepper -->
+    <nav aria-label="Passport steps" style="display: flex; flex-wrap: wrap; gap: 8px">
+      <sc-for list="{{stepList}}" as="st" hint-placeholder-count="5">
+        <button type="button" onClick="{{st.go}}" aria-current="{{st.current}}" style="min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1.5px solid {{st.border}}; background: {{st.bg}}; color: {{st.fg}}; font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; gap: 8px">
+          <span style="font-weight: 800">{{st.mark}}</span>{{st.label}}
+        </button>
+      </sc-for>
+    </nav>
+
+    <!-- STEP 1 -->
+    <sc-if value="{{is1}}" hint-placeholder-val="{{true}}">
+      <section style="background: #FFFFFF; border-radius: 24px; padding: 36px; display: flex; flex-direction: column; gap: 24px">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -0.02em">Let's meet your pet</h1>
+          <p style="margin: 0; font-size: 17px; color: #4F5F58; line-height: 1.55">One passport, shared with every host you book. You only fill this in once.</p>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center">
+          <button type="button" aria-label="Upload pet photo" style="width: 120px; height: 120px; border-radius: 28px; border: 2px dashed #9DB8AA; background: #EEF4F0; color: #1E5B45; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-weight: 700; font-size: 13px">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>Add photo
+          </button>
+          <div style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 10px">
+            <span style="font-weight: 700; font-size: 15px">Species</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px">
+              <sc-for list="{{species}}" as="sp" hint-placeholder-count="3">
+                <button type="button" onClick="{{sp.pick}}" aria-pressed="{{sp.pressed}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1.5px solid {{sp.border}}; background: {{sp.bg}}; color: {{sp.fg}}; font-weight: 600; font-size: 15px">{{sp.label}}</button>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
+          <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 700; font-size: 15px">Name<input type="text" value="Luna" style="min-height: 48px; padding: 0 14px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px; color: #13261F"></label>
+          <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 700; font-size: 15px">Breed or mix<input type="text" value="Border collie mix" style="min-height: 48px; padding: 0 14px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px; color: #13261F"></label>
+          <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 700; font-size: 15px">Birthday (approx.)<input type="text" value="March 2022" style="min-height: 48px; padding: 0 14px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px; color: #13261F"></label>
+          <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 700; font-size: 15px">Weight (kg)<input type="number" value="18" style="min-height: 48px; padding: 0 14px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px; color: #13261F"></label>
+          <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 700; font-size: 15px">Sex<select style="min-height: 48px; padding: 0 12px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px; background: #FFFFFF"><option>Female</option><option>Male</option></select></label>
+          <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 700; font-size: 15px">Spayed / neutered<select style="min-height: 48px; padding: 0 12px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px; background: #FFFFFF"><option>Yes</option><option>No</option></select></label>
+        </div>
+        <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 700; font-size: 15px">Microchip number <span style="font-weight: 500; color: #4F5F58">(optional, shown to hosts only during a stay)</span><input type="text" placeholder="15 digits" style="min-height: 48px; padding: 0 14px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px; color: #13261F"></label>
+      </section>
+    </sc-if>
+
+    <!-- STEP 2 -->
+    <sc-if value="{{is2}}" hint-placeholder-val="{{false}}">
+      <section style="background: #FFFFFF; border-radius: 24px; padding: 36px; display: flex; flex-direction: column; gap: 24px">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -0.02em">Health and vet</h1>
+          <p style="margin: 0; font-size: 17px; color: #4F5F58; line-height: 1.55">Most hosts require current core vaccines. Upload the record once; we remind you before anything expires.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; border: 1px solid #DCE4DF; border-radius: 18px; overflow: hidden">
+          <sc-for list="{{vaccines}}" as="v" hint-placeholder-count="4">
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid #E6ECE8">
+              <div style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 16px">{{v.name}}</strong><span style="font-size: 14px; color: #4F5F58">{{v.note}}</span></div>
+              <span style="font-size: 14px; font-weight: 700; padding: 6px 12px; border-radius: 999px; background: {{v.bg}}; color: {{v.fg}}">{{v.status}}</span>
+            </div>
+          </sc-for>
+          <button type="button" style="min-height: 56px; border: 0; background: #F6F8F7; color: #1E5B45; font-weight: 700; font-size: 15px">+ Upload vaccination record (PDF or photo)</button>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
+          <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 700; font-size: 15px">Medication<textarea rows="3" placeholder="Name, dose and time" style="padding: 12px 14px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px; resize: vertical"></textarea></label>
+          <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 700; font-size: 15px">Allergies and conditions<textarea rows="3" placeholder="e.g. chicken allergy, hip dysplasia" style="padding: 12px 14px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px; resize: vertical"></textarea></label>
+          <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 700; font-size: 15px">Vet clinic<input type="text" value="Clínica Veterinaria Laureles" style="min-height: 48px; padding: 0 14px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px"></label>
+          <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 700; font-size: 15px">Vet phone<input type="tel" placeholder="+57 …" style="min-height: 48px; padding: 0 14px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px"></label>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- STEP 3 -->
+    <sc-if value="{{is3}}" hint-placeholder-val="{{false}}">
+      <section style="background: #FFFFFF; border-radius: 24px; padding: 36px; display: flex; flex-direction: column; gap: 28px">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -0.02em">Personality and behaviour</h1>
+          <p style="margin: 0; font-size: 17px; color: #4F5F58; line-height: 1.55">Honest answers get better matches. Hosts compare this with how the stay actually went.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 18px">
+          <sc-for list="{{socials}}" as="so" hint-placeholder-count="3">
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between">
+              <strong style="font-size: 16px; min-width: 180px">{{so.label}}</strong>
+              <div role="group" aria-label="{{so.label}}" style="display: inline-flex; background: #EEF4F0; border-radius: 999px; padding: 4px; gap: 2px">
+                <sc-for list="{{so.opts}}" as="o" hint-placeholder-count="3">
+                  <button type="button" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="min-height: 40px; padding: 0 16px; border-radius: 999px; border: 0; background: {{o.bg}}; color: #13261F; font-weight: {{o.weight}}; font-size: 15px">{{o.label}}</button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <strong style="font-size: 16px">Energy level</strong>
+          <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px">
+            <sc-for list="{{energy}}" as="e" hint-placeholder-count="5">
+              <button type="button" onClick="{{e.pick}}" aria-pressed="{{e.pressed}}" style="min-height: 64px; border-radius: 14px; border: 1.5px solid {{e.border}}; background: {{e.bg}}; color: {{e.fg}}; font-weight: 700; font-size: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px"><span style="font-size: 20px">{{e.n}}</span>{{e.label}}</button>
+            </sc-for>
+          </div>
+        </div>
+        <fieldset style="border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px">
+          <legend style="font-weight: 700; font-size: 16px; margin-bottom: 8px">Anything a host should know?</legend>
+          <label style="display: flex; gap: 12px; align-items: center; font-size: 16px; min-height: 44px"><input type="checkbox" checked style="width: 22px; height: 22px; accent-color: #1E5B45">Anxious when left alone</label>
+          <label style="display: flex; gap: 12px; align-items: center; font-size: 16px; min-height: 44px"><input type="checkbox" style="width: 22px; height: 22px; accent-color: #1E5B45">Pulls on the leash</label>
+          <label style="display: flex; gap: 12px; align-items: center; font-size: 16px; min-height: 44px"><input type="checkbox" checked style="width: 22px; height: 22px; accent-color: #1E5B45">Scared of loud noises</label>
+          <label style="display: flex; gap: 12px; align-items: center; font-size: 16px; min-height: 44px"><input type="checkbox" style="width: 22px; height: 22px; accent-color: #1E5B45">Guards food or toys</label>
+          <label style="display: flex; gap: 12px; align-items: center; font-size: 16px; min-height: 44px"><input type="checkbox" style="width: 22px; height: 22px; accent-color: #1E5B45">Can jump or climb fences</label>
+        </fieldset>
+      </section>
+    </sc-if>
+
+    <!-- STEP 4 -->
+    <sc-if value="{{is4}}" hint-placeholder-val="{{false}}">
+      <section style="background: #FFFFFF; border-radius: 24px; padding: 36px; display: flex; flex-direction: column; gap: 24px">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -0.02em">Daily routine</h1>
+          <p style="margin: 0; font-size: 17px; color: #4F5F58; line-height: 1.55">Keeping the routine is the easiest way to keep a pet calm in a new place.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
+          <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 700; font-size: 15px">Meals<input type="text" value="8:00 and 18:00 · 1 cup dry" style="min-height: 48px; padding: 0 14px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px"></label>
+          <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 700; font-size: 15px">Walks<input type="text" value="2 × 30 min, harness" style="min-height: 48px; padding: 0 14px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px"></label>
+          <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 700; font-size: 15px">Potty breaks<input type="text" value="Every 4 hours" style="min-height: 48px; padding: 0 14px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px"></label>
+          <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 700; font-size: 15px">Sleeps<input type="text" value="In own crate, door open" style="min-height: 48px; padding: 0 14px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px"></label>
+        </div>
+        <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 700; font-size: 15px">What calms them<textarea rows="3" placeholder="A favourite toy, a blanket that smells like home, soft music…" style="padding: 12px 14px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px; resize: vertical"></textarea></label>
+        <div style="display: flex; flex-direction: column; gap: 12px; padding: 20px; border-radius: 16px; background: #F6F8F7">
+          <strong style="font-size: 16px">Emergency permissions</strong>
+          <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 600; font-size: 15px">Emergency contact if you can't be reached<input type="text" placeholder="Name and phone" style="min-height: 48px; padding: 0 14px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px; background: #FFFFFF"></label>
+          <label style="display: flex; gap: 12px; align-items: flex-start; font-size: 15px; line-height: 1.5"><input type="checkbox" checked style="width: 22px; height: 22px; margin-top: 1px; flex: none; accent-color: #1E5B45">Authorise the host to take my pet to a vet in an emergency, up to $300, covered by me.</label>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- STEP 5 -->
+    <sc-if value="{{is5}}" hint-placeholder-val="{{false}}">
+      <section style="background: #FFFFFF; border-radius: 24px; padding: 36px; display: flex; flex-direction: column; gap: 20px">
+        <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -0.02em">Luna's passport is ready</h1>
+        <p style="margin: 0; font-size: 17px; color: #4F5F58; line-height: 1.55">Hosts see this before accepting. After each stay the host adds to Luna's <strong style="color: #13261F">Good Guest record</strong>: how closely the passport matched, behaviour, and on-time pick-up.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px">
+          <div style="padding: 18px; border-radius: 16px; background: #EEF4F0; display: flex; flex-direction: column; gap: 6px"><strong style="font-size: 16px">Starts as "New guest"</strong><span style="font-size: 14px; color: #3F5249; line-height: 1.5">Up to 5-hour stays with any host until the first review.</span></div>
+          <div style="padding: 18px; border-radius: 16px; background: #EEF4F0; display: flex; flex-direction: column; gap: 6px"><strong style="font-size: 16px">3 good stays → "Good Guest"</strong><span style="font-size: 14px; color: #3F5249; line-height: 1.5">Instant booking with hosts who allow it.</span></div>
+          <div style="padding: 18px; border-radius: 16px; background: #EEF4F0; display: flex; flex-direction: column; gap: 6px"><strong style="font-size: 16px">10 good stays → "Star Guest"</strong><span style="font-size: 14px; color: #3F5249; line-height: 1.5">5% off service fees and priority on busy days.</span></div>
+        </div>
+        <a href="PetProfile.dc.html" style="align-self: flex-start; min-height: 52px; padding: 0 24px; border-radius: 999px; background: #1E5B45; color: #FFFFFF; font-weight: 700; display: inline-flex; align-items: center">View Luna's profile</a>
+      </section>
+    </sc-if>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+      <button type="button" onClick="{{back}}" style="min-height: 52px; padding: 0 24px; border-radius: 999px; border: 1px solid #C9D6CF; background: #FFFFFF; color: #13261F; font-weight: 700; font-size: 16px">Back</button>
+      <button type="button" onClick="{{next}}" style="min-height: 52px; padding: 0 28px; border-radius: 999px; border: 0; background: #1E5B45; color: #FFFFFF; font-weight: 700; font-size: 16px">{{nextLabel}}</button>
+    </div>
+  </main>
+
+  <!-- Passport preview -->
+  <aside aria-label="Passport preview" style="flex: 1 1 280px; max-width: 340px; display: flex; flex-direction: column; gap: 16px">
+    <div style="background: #13261F; color: #FFFFFF; border-radius: 24px; overflow: hidden">
+      <div role="img" aria-label="Pet photo placeholder: Luna, border collie mix" style="height: 180px; background: #A9C6B4; display: flex; align-items: flex-end; padding: 14px">
+        <span style="font-size: 12px; font-weight: 600; color: #3F5249; background: rgba(255,255,255,.88); padding: 4px 8px; border-radius: 8px">Photo: Luna</span>
+      </div>
+      <div style="padding: 22px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px">
+          <strong style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 28px">Luna</strong>
+          <span style="font-size: 13px; font-weight: 700; color: #13261F; background: #F2A93B; padding: 4px 10px; border-radius: 999px">New guest</span>
+        </div>
+        <span style="color: #C9D6CF; font-size: 15px">{{speciesLabel}} · Border collie mix · 18 kg · 4 yrs</span>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <div style="display: flex; justify-content: space-between; font-size: 14px"><span style="color: #C9D6CF">Passport complete</span><strong>{{completePct}}</strong></div>
+          <div style="height: 8px; border-radius: 999px; background: #2E4239"><div style="height: 8px; width: {{completePct}}; border-radius: 999px; background: #F2A93B"></div></div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px">
+          <span style="font-size: 13px; font-weight: 600; padding: 5px 10px; border-radius: 999px; background: #2E4239">{{energyLabel}} energy</span>
+          <span style="font-size: 13px; font-weight: 600; padding: 5px 10px; border-radius: 999px; background: #2E4239">Dogs: {{dogsLabel}}</span>
+          <span style="font-size: 13px; font-weight: 600; padding: 5px 10px; border-radius: 999px; background: #2E4239">Vaccines current</span>
+        </div>
+      </div>
+    </div>
+    <div style="background: #FFFFFF; border: 1px solid #DCE4DF; border-radius: 18px; padding: 18px; display: flex; gap: 12px; font-size: 14px; line-height: 1.5; color: #4F5F58">
+      <svg style="flex: none" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E5B45" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg>
+      <span>Health details and microchip are only visible to hosts with a confirmed booking.</span>
+    </div>
+  </aside>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1400}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { step: 1, species: 'dog', energy: 4, social: { dogs: 'yes', cats: 'unsure', kids: 'yes' } };
+  }
+  renderVals() {
+    const s = this.state;
+    const labels = ['Basics', 'Health', 'Behaviour', 'Routine', 'Done'];
+    const stepList = labels.map((label, i) => {
+      const n = i + 1, cur = n === s.step, done = n < s.step;
+      return { label, mark: done ? '✓' : String(n), current: cur ? 'step' : 'false', go: () => this.setState({ step: n }),
+        border: cur ? '#1E5B45' : '#C9D6CF', bg: cur ? '#1E5B45' : (done ? '#EEF4F0' : '#FFFFFF'), fg: cur ? '#FFFFFF' : '#13261F' };
+    });
+    const pill = (on) => ({ border: on ? '#1E5B45' : '#C9D6CF', bg: on ? '#1E5B45' : '#FFFFFF', fg: on ? '#FFFFFF' : '#13261F', pressed: on ? 'true' : 'false' });
+    const spDefs = [{ id: 'dog', label: 'Dog' }, { id: 'cat', label: 'Cat' }, { id: 'small', label: 'Small pet' }];
+    const species = spDefs.map((d) => ({ ...d, ...pill(s.species === d.id), pick: () => this.setState({ species: d.id }) }));
+
+    const vaccines = s.species === 'cat' ? [
+      { name: 'Rabies', note: 'Valid until Apr 2027', status: 'Current', bg: '#DDEBE2', fg: '#164735' },
+      { name: 'FVRCP', note: 'Valid until Jan 2027', status: 'Current', bg: '#DDEBE2', fg: '#164735' },
+      { name: 'FeLV', note: 'Recommended for social cats', status: 'Not added', bg: '#F1F1EF', fg: '#3F4A45' }
+    ] : [
+      { name: 'Rabies', note: 'Valid until Apr 2027', status: 'Current', bg: '#DDEBE2', fg: '#164735' },
+      { name: 'DHPP (distemper, parvo)', note: 'Valid until Jan 2027', status: 'Current', bg: '#DDEBE2', fg: '#164735' },
+      { name: 'Bordetella (kennel cough)', note: 'Expires in 3 weeks', status: 'Renew soon', bg: '#FCEBCB', fg: '#6B4205' },
+      { name: 'Leptospirosis', note: 'Recommended by some hosts', status: 'Not added', bg: '#F1F1EF', fg: '#3F4A45' }
+    ];
+
+    const socDefs = [{ id: 'dogs', label: 'Good with dogs' }, { id: 'cats', label: 'Good with cats' }, { id: 'kids', label: 'Good with children' }];
+    const optDefs = [{ id: 'yes', label: 'Yes' }, { id: 'unsure', label: 'Not sure' }, { id: 'no', label: 'No' }];
+    const socials = socDefs.map((d) => ({ ...d, opts: optDefs.map((o) => {
+      const on = s.social[d.id] === o.id;
+      return { ...o, pressed: on ? 'true' : 'false', bg: on ? '#FFFFFF' : 'transparent', weight: on ? '700' : '500',
+        pick: () => this.setState({ social: { ...s.social, [d.id]: o.id } }) };
+    }) }));
+    const enLabels = ['Couch', 'Calm', 'Moderate', 'Active', 'Athlete'];
+    const energy = enLabels.map((label, i) => ({ n: i + 1, label, ...pill(s.energy === i + 1), pick: () => this.setState({ energy: i + 1 }) }));
+
+    return {
+      stepList, species, vaccines, socials, energy,
+      is1: s.step === 1, is2: s.step === 2, is3: s.step === 3, is4: s.step === 4, is5: s.step === 5,
+      progressPct: Math.round(s.step / 5 * 100) + '%',
+      completePct: [40, 65, 85, 100, 100][s.step - 1] + '%',
+      speciesLabel: spDefs.find((d) => d.id === s.species).label,
+      energyLabel: enLabels[s.energy - 1],
+      dogsLabel: optDefs.find((o) => o.id === s.social.dogs).label.toLowerCase(),
+      back: () => this.setState({ step: Math.max(1, s.step - 1) }),
+      next: () => this.setState({ step: Math.min(5, s.step + 1) }),
+      nextLabel: s.step === 4 ? 'Finish passport' : s.step === 5 ? 'Find a stay' : 'Continue'
+    };
+  }
+}
+</script>
+</body>
+</html>

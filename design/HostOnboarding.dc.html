@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DogChain — Host onboarding</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&amp;family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F6F8F7;color:#13261F;font-family:'Figtree',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#1E5B45;text-decoration:none}a:hover{color:#123B2C;text-decoration:underline}
+button{font-family:inherit;cursor:pointer}
+input,select,textarea{font-family:inherit}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 1400px; background: #F6F8F7; font-family: 'Figtree', system-ui, sans-serif; color: #13261F">
+
+<!-- Top bar -->
+<header style="background: #FFFFFF; border-bottom: 1px solid #DCE4DF">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center">
+    <a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; color: #13261F">
+      <span style="width: 36px; height: 36px; border-radius: 10px; background: #1E5B45; display: flex; align-items: center; justify-content: center">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="10" r="2"></circle><circle cx="9.5" cy="5.5" r="2"></circle><circle cx="14.5" cy="5.5" r="2"></circle><circle cx="18.5" cy="10" r="2"></circle><path d="M12 11c-3 0-6 4.5-6 7a3 3 0 0 0 3 3c1.2 0 2-.6 3-.6s1.8.6 3 .6a3 3 0 0 0 3-3c0-2.5-3-7-6-7z"></path></svg>
+      </span>
+      <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 21px">DogChain <span style="font-weight: 600; color: #4F5F58">· Hosting</span></span>
+    </a>
+    <a href="Main.dc.html" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid #C9D6CF; color: #13261F; font-weight: 600; display: inline-flex; align-items: center">Save and exit</a>
+  </div>
+  <div style="height: 4px; background: #E6ECE8"><div style="height: 4px; width: {{progressPct}}; background: #1E5B45"></div></div>
+</header>
+
+<div style="max-width: 1200px; margin: 0 auto; padding: 40px 24px 64px; display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
+
+  <!-- Step list -->
+  <nav aria-label="Onboarding steps" style="flex: 1 1 240px; max-width: 300px; display: flex; flex-direction: column; gap: 4px">
+    <span style="font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #4F5F58; padding: 0 12px 10px">Step {{stepNo}} of 6</span>
+    <sc-for list="{{stepList}}" as="st" hint-placeholder-count="6">
+      <button type="button" onClick="{{st.go}}" aria-current="{{st.current}}" style="min-height: 52px; display: flex; gap: 12px; align-items: center; text-align: left; padding: 10px 12px; border: 0; border-radius: 14px; background: {{st.bg}}; color: #13261F; font-size: 16px; font-weight: {{st.weight}}">
+        <span style="flex: none; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; background: {{st.dotBg}}; color: {{st.dotFg}}">{{st.mark}}</span>
+        {{st.label}}
+      </button>
+    </sc-for>
+    <div style="margin-top: 20px; padding: 18px; border-radius: 16px; background: #FFFFFF; border: 1px solid #DCE4DF; display: flex; flex-direction: column; gap: 8px; font-size: 14px; line-height: 1.5; color: #4F5F58">
+      <strong style="color: #13261F; font-size: 15px">Your progress is saved</strong>
+      You can finish later. Your listing goes live after the ID and space check, usually within 48 hours.
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+
+    <!-- STEP 1 -->
+    <sc-if value="{{is1}}" hint-placeholder-val="{{true}}">
+      <section style="background: #FFFFFF; border-radius: 24px; padding: 36px; display: flex; flex-direction: column; gap: 24px">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -0.02em">Tell pet parents who you are</h1>
+          <p style="margin: 0; font-size: 17px; color: #4F5F58; line-height: 1.55">Your name, face and a short intro are the first things parents read. Your ID is checked privately and never shown.</p>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center">
+          <button type="button" aria-label="Upload profile photo" style="width: 112px; height: 112px; border-radius: 50%; border: 2px dashed #9DB8AA; background: #EEF4F0; color: #1E5B45; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-weight: 700; font-size: 13px">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>Add photo
+          </button>
+          <span style="flex: 1 1 240px; font-size: 15px; color: #4F5F58; line-height: 1.5">A clear, smiling photo of your face. Profiles with a photo of the host with a pet get more requests.</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
+          <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 700; font-size: 15px">First name<input type="text" value="Marisol" style="min-height: 48px; padding: 0 14px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px; color: #13261F"></label>
+          <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 700; font-size: 15px">Mobile number<input type="tel" placeholder="+1 555 000 0000" style="min-height: 48px; padding: 0 14px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px; color: #13261F"></label>
+        </div>
+        <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 700; font-size: 15px">Your intro<textarea rows="4" placeholder="I work from home and have shared my house with dogs for 12 years…" style="padding: 12px 14px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px; color: #13261F; resize: vertical"></textarea><span style="font-weight: 500; font-size: 14px; color: #4F5F58">Mention your experience with pets, your routine, and who else lives with you.</span></label>
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <strong style="font-size: 17px">Verification</strong>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px">
+            <div style="border: 1px solid #DCE4DF; border-radius: 16px; padding: 18px; display: flex; gap: 14px; align-items: center">
+              <span style="flex: none; width: 44px; height: 44px; border-radius: 12px; background: #EEF4F0; color: #1E5B45; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="9" cy="11" r="2.5"></circle><path d="M5.5 16.5c.8-1.5 2-2.2 3.5-2.2s2.7.7 3.5 2.2M15 10h3M15 13h3"></path></svg></span>
+              <div style="flex: 1; display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 15px">Government ID + selfie</strong><span style="font-size: 14px; color: #1E5B45; font-weight: 600">Verified</span></div>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E5B45" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Done"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+            </div>
+            <div style="border: 1px solid #DCE4DF; border-radius: 16px; padding: 18px; display: flex; gap: 14px; align-items: center">
+              <span style="flex: none; width: 44px; height: 44px; border-radius: 12px; background: #EEF4F0; color: #1E5B45; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg></span>
+              <div style="flex: 1; display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 15px">Payout wallet</strong><span style="font-size: 14px; color: #4F5F58">Receives USDC on Base</span></div>
+              <button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: 0; background: #1E5B45; color: #FFFFFF; font-weight: 700; font-size: 14px">Connect</button>
+            </div>
+            <div style="border: 1px solid #DCE4DF; border-radius: 16px; padding: 18px; display: flex; gap: 14px; align-items: center">
+              <span style="flex: none; width: 44px; height: 44px; border-radius: 12px; background: #EEF4F0; color: #1E5B45; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="6" width="17" height="14" rx="2"></rect><path d="M9 6V4h6v2M12 10v6M9 13h6"></path></svg></span>
+              <div style="flex: 1; display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 15px">Pet first-aid certificate</strong><span style="font-size: 14px; color: #4F5F58">Optional now · needed for Trusted</span></div>
+              <button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #C9D6CF; background: #FFFFFF; color: #13261F; font-weight: 700; font-size: 14px">Upload</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- STEP 2 -->
+    <sc-if value="{{is2}}" hint-placeholder-val="{{false}}">
+      <section style="background: #FFFFFF; border-radius: 24px; padding: 36px; display: flex; flex-direction: column; gap: 24px">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -0.02em">What kind of space will guests stay in?</h1>
+          <p style="margin: 0; font-size: 17px; color: #4F5F58; line-height: 1.55">This sets your base suggested price. Pick the closest match; you'll describe the details next.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px">
+          <sc-for list="{{spaces}}" as="sp" hint-placeholder-count="4">
+            <button type="button" onClick="{{sp.pick}}" aria-pressed="{{sp.pressed}}" style="text-align: left; min-height: 150px; padding: 20px; border-radius: 18px; border: 2px solid {{sp.border}}; background: {{sp.bg}}; color: #13261F; display: flex; flex-direction: column; gap: 8px">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E5B45" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{sp.icon}}"></path></svg>
+              <strong style="font-size: 17px">{{sp.label}}</strong>
+              <span style="font-size: 14px; color: #4F5F58; line-height: 1.45">{{sp.desc}}</span>
+              <span style="margin-top: auto; font-size: 14px; font-weight: 700; color: #1E5B45">Base {{sp.base}} / hour</span>
+            </button>
+          </sc-for>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px">
+          <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 700; font-size: 15px">Area guests can use (m²)<input type="number" value="45" style="min-height: 48px; padding: 0 14px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px; color: #13261F"></label>
+          <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 700; font-size: 15px">Neighbourhood<input type="text" value="Laureles, Medellín" style="min-height: 48px; padding: 0 14px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px; color: #13261F"></label>
+          <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 700; font-size: 15px">Other pets at home<select style="min-height: 48px; padding: 0 12px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px; color: #13261F; background: #FFFFFF"><option>One friendly dog</option><option>None</option><option>Cat(s)</option></select></label>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <strong style="font-size: 17px">Space photos <span style="font-weight: 500; color: #4F5F58; font-size: 15px">· at least 5, including every room guests use and any outdoor area</span></strong>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px">
+            <div role="img" aria-label="Uploaded photo placeholder: garden" style="aspect-ratio: 4 / 3; border-radius: 14px; background: #C7DACF; display: flex; align-items: flex-end; padding: 8px; font-size: 12px; font-weight: 600; color: #3F5249">Garden</div>
+            <div role="img" aria-label="Uploaded photo placeholder: living room" style="aspect-ratio: 4 / 3; border-radius: 14px; background: #E5DCCB; display: flex; align-items: flex-end; padding: 8px; font-size: 12px; font-weight: 600; color: #3F5249">Living room</div>
+            <div role="img" aria-label="Uploaded photo placeholder: rest area" style="aspect-ratio: 4 / 3; border-radius: 14px; background: #D3DCE7; display: flex; align-items: flex-end; padding: 8px; font-size: 12px; font-weight: 600; color: #3F5249">Rest area</div>
+            <button type="button" style="aspect-ratio: 4 / 3; border-radius: 14px; border: 2px dashed #9DB8AA; background: #F6F8F7; color: #1E5B45; font-weight: 700; font-size: 14px">+ Add photos</button>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- STEP 3 -->
+    <sc-if value="{{is3}}" hint-placeholder-val="{{false}}">
+      <section style="background: #FFFFFF; border-radius: 24px; padding: 36px; display: flex; flex-direction: column; gap: 24px">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -0.02em">Which amenities do you offer?</h1>
+          <p style="margin: 0; font-size: 17px; color: #4F5F58; line-height: 1.55">Each one adds to your suggested price and shows as a filter in search. Only select what you can provide on every stay; the space check confirms them.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px">
+          <sc-for list="{{amenities}}" as="am" hint-placeholder-count="8">
+            <button type="button" onClick="{{am.toggle}}" aria-pressed="{{am.pressed}}" style="min-height: 72px; text-align: left; padding: 16px 18px; border-radius: 16px; border: 2px solid {{am.border}}; background: {{am.bg}}; color: #13261F; display: flex; gap: 14px; align-items: center">
+              <span style="flex: none; width: 24px; height: 24px; border-radius: 7px; border: 2px solid #1E5B45; background: {{am.boxBg}}; display: flex; align-items: center; justify-content: center">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+              </span>
+              <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 16px">{{am.label}}</strong><span style="font-size: 14px; color: #4F5F58">{{am.desc}}</span></span>
+              <span style="font-size: 14px; font-weight: 700; color: #1E5B45; white-space: nowrap">+{{am.add}}/h</span>
+            </button>
+          </sc-for>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- STEP 4 -->
+    <sc-if value="{{is4}}" hint-placeholder-val="{{false}}">
+      <section style="background: #FFFFFF; border-radius: 24px; padding: 36px; display: flex; flex-direction: column; gap: 28px">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -0.02em">Who can stay, and when?</h1>
+          <p style="margin: 0; font-size: 17px; color: #4F5F58; line-height: 1.55">Requests outside these rules never reach you.</p>
+        </div>
+        <fieldset style="border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px">
+          <legend style="font-weight: 700; font-size: 17px; margin-bottom: 12px">Pets you accept</legend>
+          <div style="display: flex; flex-wrap: wrap; gap: 10px">
+            <sc-for list="{{petTypes}}" as="pt" hint-placeholder-count="6">
+              <button type="button" onClick="{{pt.toggle}}" aria-pressed="{{pt.pressed}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1.5px solid {{pt.border}}; background: {{pt.bg}}; color: {{pt.fg}}; font-weight: 600; font-size: 15px">{{pt.label}}</button>
+            </sc-for>
+          </div>
+        </fieldset>
+        <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; padding: 20px; border-radius: 16px; background: #F6F8F7">
+          <div style="display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 17px">Guests at the same time</strong><span style="font-size: 14px; color: #4F5F58">New hosts start at 1. Trusted hosts can take up to 3.</span></div>
+          <div style="display: flex; align-items: center; gap: 14px">
+            <button type="button" onClick="{{decGuests}}" aria-label="Fewer guests" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #C9D6CF; background: #FFFFFF; font-size: 22px; color: #13261F">−</button>
+            <strong style="font-size: 24px; min-width: 24px; text-align: center">{{guests}}</strong>
+            <button type="button" onClick="{{incGuests}}" aria-label="More guests" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #C9D6CF; background: #FFFFFF; font-size: 22px; color: #13261F">+</button>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <strong style="font-size: 17px">Hosting hours</strong>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px">
+            <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 600; font-size: 14px">Earliest drop-off<input type="time" value="07:00" style="min-height: 48px; padding: 0 12px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px"></label>
+            <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 600; font-size: 14px">Latest pick-up<input type="time" value="21:00" style="min-height: 48px; padding: 0 12px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px"></label>
+            <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 600; font-size: 14px">Minimum stay<select style="min-height: 48px; padding: 0 12px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px; background: #FFFFFF"><option>1 hour</option><option>2 hours</option><option>Half day</option></select></label>
+            <label style="display: flex; flex-direction: column; gap: 8px; font-weight: 600; font-size: 14px">Notice needed<select style="min-height: 48px; padding: 0 12px; border: 1px solid #C9D6CF; border-radius: 12px; font-size: 16px; background: #FFFFFF"><option>2 hours</option><option>Same day</option><option>1 day</option></select></label>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <strong style="font-size: 17px">House rules</strong>
+          <label style="display: flex; gap: 12px; align-items: center; font-size: 16px; min-height: 44px"><input type="checkbox" checked style="width: 22px; height: 22px; accent-color: #1E5B45">Vaccination record required</label>
+          <label style="display: flex; gap: 12px; align-items: center; font-size: 16px; min-height: 44px"><input type="checkbox" checked style="width: 22px; height: 22px; accent-color: #1E5B45">Meet-and-greet before first stay</label>
+          <label style="display: flex; gap: 12px; align-items: center; font-size: 16px; min-height: 44px"><input type="checkbox" style="width: 22px; height: 22px; accent-color: #1E5B45">Spayed / neutered only</label>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- STEP 5 -->
+    <sc-if value="{{is5}}" hint-placeholder-val="{{false}}">
+      <section style="background: #FFFFFF; border-radius: 24px; padding: 36px; display: flex; flex-direction: column; gap: 24px">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -0.02em">Your fair price</h1>
+          <p style="margin: 0; font-size: 17px; color: #4F5F58; line-height: 1.55">Suggested from your space, your amenities and demand in your area. Start close to it while you build reviews; your tier adds to it automatically later.</p>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+          <span style="font-weight: 700; font-size: 15px; margin-right: 6px">Local demand</span>
+          <sc-for list="{{demands}}" as="dm" hint-placeholder-count="3">
+            <button type="button" onClick="{{dm.pick}}" aria-pressed="{{dm.pressed}}" style="min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1.5px solid {{dm.border}}; background: {{dm.bg}}; color: {{dm.fg}}; font-weight: 600; font-size: 15px">{{dm.label}}</button>
+          </sc-for>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px">
+          <sc-for list="{{priceRows}}" as="pr" hint-placeholder-count="4">
+            <div style="border: 1px solid #DCE4DF; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 6px">
+              <span style="font-size: 14px; font-weight: 700; color: #4F5F58">{{pr.label}}</span>
+              <strong style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 32px; letter-spacing: -0.02em">{{pr.price}}</strong>
+              <span style="font-size: 13px; color: #4F5F58">Fair range {{pr.range}}</span>
+              <span style="font-size: 14px; color: #1E5B45; font-weight: 700">You earn {{pr.earn}}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between; padding: 20px; border-radius: 16px; background: #F6F8F7">
+          <div style="display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 17px">Adjust your price</strong><span style="font-size: 14px; color: #4F5F58">{{adjustNote}}</span></div>
+          <div style="display: flex; align-items: center; gap: 14px">
+            <button type="button" onClick="{{decAdj}}" aria-label="Lower price by 5 percent" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #C9D6CF; background: #FFFFFF; font-size: 22px; color: #13261F">−</button>
+            <strong style="font-size: 22px; min-width: 64px; text-align: center">{{adjLabel}}</strong>
+            <button type="button" onClick="{{incAdj}}" aria-label="Raise price by 5 percent" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #C9D6CF; background: #FFFFFF; font-size: 22px; color: #13261F">+</button>
+          </div>
+        </div>
+        <details style="border: 1px solid #DCE4DF; border-radius: 16px; padding: 18px 20px">
+          <summary style="cursor: pointer; font-weight: 700; font-size: 16px; min-height: 28px">How we calculate this</summary>
+          <div style="display: flex; flex-direction: column; gap: 8px; padding-top: 12px; font-size: 15px; color: #3F5249; line-height: 1.55">
+            <span>Hourly rate = (space base + amenities) × local demand. Half day = 5 h at 60%, full day = 10 h at 40%, overnight = 10 h at 55% of the hourly rate.</span>
+            <span>Each extra pet from the same home adds 60%. Tier bonus: Trusted +5%, Pack Leader +12%.</span>
+            <span>The fair range is ±15% around the suggestion. Parents pay the price plus nothing hidden; you receive 90%.</span>
+          </div>
+        </details>
+      </section>
+    </sc-if>
+
+    <!-- STEP 6 -->
+    <sc-if value="{{is6}}" hint-placeholder-val="{{false}}">
+      <section style="background: #FFFFFF; border-radius: 24px; padding: 36px; display: flex; flex-direction: column; gap: 24px">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -0.02em">Review and submit</h1>
+          <p style="margin: 0; font-size: 17px; color: #4F5F58; line-height: 1.55">We'll book a 20-minute video space check. Once approved you're listed as a <strong style="color: #13261F">New Host</strong>.</p>
+        </div>
+        <div style="display: flex; flex-direction: column">
+          <div style="display: flex; justify-content: space-between; gap: 16px; padding: 16px 0; border-bottom: 1px solid #E6ECE8; font-size: 16px"><span style="color: #4F5F58">Space</span><strong>{{spaceLabel}}</strong></div>
+          <div style="display: flex; justify-content: space-between; gap: 16px; padding: 16px 0; border-bottom: 1px solid #E6ECE8; font-size: 16px"><span style="color: #4F5F58">Amenities</span><strong style="text-align: right">{{amenityCount}} selected</strong></div>
+          <div style="display: flex; justify-content: space-between; gap: 16px; padding: 16px 0; border-bottom: 1px solid #E6ECE8; font-size: 16px"><span style="color: #4F5F58">Accepts</span><strong style="text-align: right">{{petSummary}}</strong></div>
+          <div style="display: flex; justify-content: space-between; gap: 16px; padding: 16px 0; border-bottom: 1px solid #E6ECE8; font-size: 16px"><span style="color: #4F5F58">Guests at once</span><strong>{{guests}}</strong></div>
+          <div style="display: flex; justify-content: space-between; gap: 16px; padding: 16px 0; font-size: 16px"><span style="color: #4F5F58">Hourly price</span><strong>{{hourlyPrice}}</strong></div>
+        </div>
+        <label style="display: flex; gap: 12px; align-items: flex-start; font-size: 15px; line-height: 1.5"><input type="checkbox" style="width: 22px; height: 22px; margin-top: 1px; flex: none; accent-color: #1E5B45">I confirm the photos and amenities are accurate and agree to the Host Care Standards.</label>
+      </section>
+    </sc-if>
+
+    <!-- Footer nav -->
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+      <button type="button" onClick="{{back}}" style="min-height: 52px; padding: 0 24px; border-radius: 999px; border: 1px solid #C9D6CF; background: #FFFFFF; color: #13261F; font-weight: 700; font-size: 16px">Back</button>
+      <button type="button" onClick="{{next}}" style="min-height: 52px; padding: 0 28px; border-radius: 999px; border: 0; background: #1E5B45; color: #FFFFFF; font-weight: 700; font-size: 16px">{{nextLabel}}</button>
+    </div>
+  </main>
+
+  <!-- Live price summary -->
+  <aside aria-label="Suggested price" style="flex: 1 1 260px; max-width: 320px; background: #13261F; color: #FFFFFF; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+    <span style="font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #F2A93B">Live suggestion</span>
+    <div style="display: flex; align-items: baseline; gap: 6px"><strong style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 44px; letter-spacing: -0.02em">{{hourlyPrice}}</strong><span style="color: #C9D6CF">/ hour</span></div>
+    <div style="display: flex; flex-direction: column; font-size: 15px">
+      <div style="display: flex; justify-content: space-between; padding: 10px 0; border-top: 1px solid #2E4239"><span style="color: #C9D6CF">{{spaceLabel}}</span><span>{{baseLabel}}</span></div>
+      <div style="display: flex; justify-content: space-between; padding: 10px 0; border-top: 1px solid #2E4239"><span style="color: #C9D6CF">Amenities ({{amenityCount}})</span><span>+{{addLabel}}</span></div>
+      <div style="display: flex; justify-content: space-between; padding: 10px 0; border-top: 1px solid #2E4239"><span style="color: #C9D6CF">Local demand</span><span>× {{demandMult}}</span></div>
+      <div style="display: flex; justify-content: space-between; padding: 10px 0; border-top: 1px solid #2E4239"><span style="color: #C9D6CF">Your adjustment</span><span>{{adjLabel}}</span></div>
+    </div>
+    <span style="font-size: 13px; color: #C9D6CF; line-height: 1.5">Updates as you choose your space and amenities.</span>
+  </aside>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1400}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      step: 1, space: 'yard', demand: 'std', adj: 0, guests: 1,
+      amen: { fenced: true, walks: true, camera: false, firstaid: false, ac: true, quiet: false, diets: false, vet: false },
+      pets: { small: true, medium: true, large: false, cats: false, puppies: false, seniors: true }
+    };
+  }
+  renderVals() {
+    const s = this.state;
+    const money = (n) => '$' + n.toFixed(2);
+    const labels = ['About you', 'Your space', 'Amenities', 'Guests & rules', 'Pricing', 'Review'];
+    const stepList = labels.map((label, i) => {
+      const n = i + 1, cur = n === s.step, done = n < s.step;
+      return { label, current: cur ? 'step' : 'false', go: () => this.setState({ step: n }),
+        bg: cur ? '#FFFFFF' : 'transparent', weight: cur ? '700' : '500',
+        dotBg: done || cur ? '#1E5B45' : '#E6ECE8', dotFg: done || cur ? '#FFFFFF' : '#3F5249', mark: done ? '✓' : String(n) };
+    });
+
+    const spaceDefs = [
+      { id: 'apt', label: 'Apartment, pet room', base: 7.5, desc: 'A room or corner set up for pets inside an apartment.', icon: 'M4 21V5h10v16M14 9h6v12M7 9h2M7 13h2M7 17h2' },
+      { id: 'house', label: 'House, no yard', base: 8.5, desc: 'Indoor space in a house, walks for outdoor time.', icon: 'M3 11l9-7 9 7M5 10v10h14V10M10 20v-5h4v5' },
+      { id: 'yard', label: 'House with yard', base: 9.5, desc: 'Indoor space plus a private outdoor area.', icon: 'M12 21v-6M12 3l6 8h-3l4 5H5l4-5H6z' },
+      { id: 'pro', label: 'Dedicated pet space', base: 11, desc: 'A room or building used only for pets.', icon: 'M5 11V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3M3 18v-5a2 2 0 0 1 4 0v2h10v-2a2 2 0 0 1 4 0v5z' }
+    ];
+    const spaces = spaceDefs.map((d) => ({ ...d, base: money(d.base), pressed: s.space === d.id ? 'true' : 'false',
+      border: s.space === d.id ? '#1E5B45' : '#DCE4DF', bg: s.space === d.id ? '#EEF4F0' : '#FFFFFF',
+      pick: () => this.setState({ space: d.id }) }));
+    const sp = spaceDefs.find((d) => d.id === s.space);
+
+    const amenDefs = [
+      { id: 'fenced', label: 'Fenced yard', desc: 'Fully enclosed outdoor area', add: 1.5 },
+      { id: 'walks', label: 'Walks included', desc: 'At least one leashed walk', add: 1.25 },
+      { id: 'camera', label: 'Live camera', desc: 'Parents can watch the space', add: 1 },
+      { id: 'firstaid', label: 'Pet first-aid trained', desc: 'Certificate uploaded', add: 0.75 },
+      { id: 'ac', label: 'Climate controlled', desc: 'AC or heating indoors', add: 0.5 },
+      { id: 'quiet', label: 'Quiet rest room', desc: 'Separate from other guests', add: 0.5 },
+      { id: 'diets', label: 'Meds & special diets', desc: 'Oral meds on schedule', add: 0.5 },
+      { id: 'vet', label: 'Vet nearby', desc: 'Clinic within 2 km', add: 0.25 }
+    ];
+    const amenities = amenDefs.map((a) => {
+      const on = !!s.amen[a.id];
+      return { ...a, add: money(a.add), pressed: on ? 'true' : 'false', border: on ? '#1E5B45' : '#DCE4DF', bg: on ? '#EEF4F0' : '#FFFFFF', boxBg: on ? '#1E5B45' : '#FFFFFF',
+        toggle: () => this.setState({ amen: { ...s.amen, [a.id]: !on } }) };
+    });
+    const addSum = amenDefs.reduce((t, a) => t + (s.amen[a.id] ? a.add : 0), 0);
+    const amenityCount = amenDefs.filter((a) => s.amen[a.id]).length;
+
+    const petDefs = [
+      { id: 'small', label: 'Small dogs < 10 kg' }, { id: 'medium', label: 'Medium dogs 10–25 kg' }, { id: 'large', label: 'Large dogs > 25 kg' },
+      { id: 'cats', label: 'Cats' }, { id: 'puppies', label: 'Puppies < 6 months' }, { id: 'seniors', label: 'Senior pets' }
+    ];
+    const petTypes = petDefs.map((p) => {
+      const on = !!s.pets[p.id];
+      return { ...p, pressed: on ? 'true' : 'false', border: on ? '#1E5B45' : '#C9D6CF', bg: on ? '#1E5B45' : '#FFFFFF', fg: on ? '#FFFFFF' : '#13261F',
+        toggle: () => this.setState({ pets: { ...s.pets, [p.id]: !on } }) };
+    });
+    const petSummary = petDefs.filter((p) => s.pets[p.id]).map((p) => p.label.replace(/ [<>].*$/, '').replace(/ \d.*$/, '')).join(', ') || 'None yet';
+
+    const demandDefs = [{ id: 'low', label: 'Quieter area', m: 0.85 }, { id: 'std', label: 'Typical', m: 1 }, { id: 'high', label: 'High demand', m: 1.2 }];
+    const demands = demandDefs.map((d) => {
+      const on = s.demand === d.id;
+      return { ...d, pressed: on ? 'true' : 'false', border: on ? '#1E5B45' : '#C9D6CF', bg: on ? '#1E5B45' : '#FFFFFF', fg: on ? '#FFFFFF' : '#13261F', pick: () => this.setState({ demand: d.id }) };
+    });
+    const dm = demandDefs.find((d) => d.id === s.demand).m;
+    const adjF = 1 + s.adj / 100;
+    const hourly = (sp.base + addSum) * dm * adjF;
+    const rows = [
+      { label: 'Drop-in · per hour', v: hourly },
+      { label: 'Half day · up to 5 h', v: hourly * 5 * 0.6 },
+      { label: 'Full day · up to 10 h', v: hourly * 10 * 0.4 },
+      { label: 'Overnight · up to 24 h', v: hourly * 10 * 0.55 }
+    ];
+    const sugg = (sp.base + addSum) * dm;
+    const priceRows = rows.map((r) => {
+      const ref = r.v / adjF;
+      return { label: r.label, price: money(r.v), earn: money(r.v * 0.9), range: money(ref * 0.85) + '–' + money(ref * 1.15) };
+    });
+    const adjLabel = (s.adj > 0 ? '+' : '') + s.adj + '%';
+    const adjustNote = Math.abs(s.adj) > 15 ? 'Outside the fair range: expect fewer requests' + (s.adj > 0 ? '.' : ', and lower earnings.') : 'Within the fair range for your area.';
+
+    return {
+      stepList, stepNo: s.step, progressPct: Math.round(s.step / 6 * 100) + '%',
+      is1: s.step === 1, is2: s.step === 2, is3: s.step === 3, is4: s.step === 4, is5: s.step === 5, is6: s.step === 6,
+      spaces, amenities, petTypes, demands, priceRows, petSummary,
+      spaceLabel: sp.label, baseLabel: money(sp.base), addLabel: money(addSum), amenityCount,
+      demandMult: dm.toFixed(2), hourlyPrice: money(hourly), adjLabel, adjustNote, guests: s.guests,
+      incGuests: () => this.setState({ guests: Math.min(3, s.guests + 1) }),
+      decGuests: () => this.setState({ guests: Math.max(1, s.guests - 1) }),
+      incAdj: () => this.setState({ adj: Math.min(30, s.adj + 5) }),
+      decAdj: () => this.setState({ adj: Math.max(-30, s.adj - 5) }),
+      back: () => this.setState({ step: Math.max(1, s.step - 1) }),
+      next: () => this.setState({ step: Math.min(6, s.step + 1) }),
+      nextLabel: s.step === 6 ? 'Submit for review' : s.step === 5 ? 'Review listing' : 'Continue'
+    };
+  }
+}
+</script>
+</body>
+</html>

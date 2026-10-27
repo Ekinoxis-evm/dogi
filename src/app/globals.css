@@ -1,26 +1,54 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Tokens from DESIGN.md. Change them there first. */
+@theme {
+  --color-canvas: #F6F8F7;
+  --color-surface: #FFFFFF;
+  --color-sunk: #EEF4F0;
+  --color-sunk-2: #E6ECE8;
+  --color-line: #DCE4DF;
+  --color-line-strong: #C9D6CF;
+  --color-ink: #13261F;
+  --color-ink-2: #2E4239;
+  --color-muted: #4F5F58;
+  --color-brand: #1E5B45;
+  --color-brand-hover: #164735;
+  --color-brand-deep: #123B2C;
+  --color-brand-tint: #DDEBE2;
+  --color-amber: #F2A93B;
+  --color-amber-deep: #E39A1F;
+  --color-amber-tint: #FCEBCB;
+  --color-amber-ink: #6B4205;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-sans: var(--font-figtree), system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-figtree), system-ui, sans-serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 28px;
+
+  --shadow-card: 0 1px 2px rgba(19, 38, 31, 0.06);
+  --shadow-raised: 0 1px 2px rgba(19, 38, 31, 0.06), 0 12px 32px rgba(19, 38, 31, 0.08);
+  --shadow-pop: 0 12px 32px rgba(19, 38, 31, 0.14);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--color-brand); }
+a:hover { color: var(--color-brand-deep); }
+
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }

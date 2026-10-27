@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DogChain — Pet guest profile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&amp;family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFFFFF;color:#13261F;font-family:'Figtree',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#1E5B45;text-decoration:none}a:hover{color:#123B2C;text-decoration:underline}
+button{font-family:inherit;cursor:pointer}
+</style>
+</helmet>
+<div style="width: 100%; background: #FFFFFF; font-family: 'Figtree', system-ui, sans-serif; color: #13261F">
+
+<header style="border-bottom: 1px solid #DCE4DF">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: center">
+    <a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; color: #13261F">
+      <span style="width: 36px; height: 36px; border-radius: 10px; background: #1E5B45; display: flex; align-items: center; justify-content: center">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="10" r="2"></circle><circle cx="9.5" cy="5.5" r="2"></circle><circle cx="14.5" cy="5.5" r="2"></circle><circle cx="18.5" cy="10" r="2"></circle><path d="M12 11c-3 0-6 4.5-6 7a3 3 0 0 0 3 3c1.2 0 2-.6 3-.6s1.8.6 3 .6a3 3 0 0 0 3-3c0-2.5-3-7-6-7z"></path></svg>
+      </span>
+      <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px">DogChain</span>
+    </a>
+    <span style="display: inline-flex; gap: 8px; align-items: center; font-size: 14px; font-weight: 600; color: #6B4205; background: #FCEBCB; padding: 8px 14px; border-radius: 999px">Host view · booking request from Valentina for Sat 11 Oct</span>
+  </div>
+</header>
+
+<div style="max-width: 1240px; margin: 0 auto; padding: 36px 24px 80px; display: flex; flex-direction: column; gap: 36px">
+
+  <!-- Hero -->
+  <section style="display: flex; flex-wrap: wrap; gap: 32px; align-items: stretch">
+    <div role="img" aria-label="Pet photo placeholder: Luna, a black and white border collie mix" style="flex: 1 1 320px; max-width: 420px; min-height: 340px; border-radius: 28px; background: #A9C6B4; display: flex; align-items: flex-end; padding: 16px">
+      <span style="font-size: 12px; font-weight: 600; color: #3F5249; background: rgba(255,255,255,.88); padding: 4px 8px; border-radius: 8px">Photo: Luna</span>
+    </div>
+    <div style="flex: 999 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 18px; justify-content: center">
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+        <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 56px; letter-spacing: -0.03em; line-height: 1">Luna</h1>
+        <span style="display: inline-flex; gap: 6px; align-items: center; background: #1E5B45; color: #FFFFFF; padding: 8px 14px; border-radius: 999px; font-size: 15px; font-weight: 700"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg>Good Guest</span>
+      </div>
+      <span style="font-size: 19px; color: #3F5249">Dog · Border collie mix · Female, spayed · 18 kg · 4 years</span>
+      <span style="font-size: 16px; color: #3F5249">Parent: <strong style="color: #13261F">Valentina G.</strong> · ID verified · Member since Jan 2026</span>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <span style="font-size: 14px; font-weight: 600; background: #EEF4F0; color: #1E5B45; padding: 6px 12px; border-radius: 999px">Good with dogs</span>
+        <span style="font-size: 14px; font-weight: 600; background: #EEF4F0; color: #1E5B45; padding: 6px 12px; border-radius: 999px">Good with children</span>
+        <span style="font-size: 14px; font-weight: 600; background: #F1F1EF; color: #3F4A45; padding: 6px 12px; border-radius: 999px">Cats: not sure</span>
+        <span style="font-size: 14px; font-weight: 600; background: #F1F1EF; color: #3F4A45; padding: 6px 12px; border-radius: 999px">Active energy</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px">
+        <a href="HostProfile.dc.html" style="min-height: 52px; padding: 0 26px; border-radius: 999px; background: #1E5B45; color: #FFFFFF; font-weight: 700; display: inline-flex; align-items: center">Accept request</a>
+        <a href="HostProfile.dc.html" style="min-height: 52px; padding: 0 24px; border-radius: 999px; border: 1px solid #C9D6CF; color: #13261F; font-weight: 700; display: inline-flex; align-items: center">Message Valentina</a>
+        <a href="HostProfile.dc.html" style="min-height: 52px; padding: 0 20px; border-radius: 999px; color: #3F5249; font-weight: 600; display: inline-flex; align-items: center">Decline</a>
+      </div>
+    </div>
+  </section>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 24px; align-items: start">
+
+    <!-- Guest reputation -->
+    <section aria-labelledby="gg-h" style="padding: 32px; border-radius: 28px; background: #13261F; color: #FFFFFF; display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; gap: 18px; align-items: center">
+        <strong style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 60px; line-height: 1; letter-spacing: -0.03em">4.9</strong>
+        <div style="display: flex; flex-direction: column; gap: 4px"><h2 id="gg-h" style="margin: 0; font-size: 20px">Good Guest record</h2><span style="color: #C9D6CF; font-size: 15px">Rated by hosts after 7 completed stays</span></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; flex-direction: column; gap: 6px"><div style="display: flex; justify-content: space-between; font-size: 15px"><span>Behaviour during stay</span><strong>4.9</strong></div><span style="display: block; height: 8px; border-radius: 999px; background: #2E4239"><span style="display: block; height: 8px; width: 98%; border-radius: 999px; background: #F2A93B"></span></span></div>
+        <div style="display: flex; flex-direction: column; gap: 6px"><div style="display: flex; justify-content: space-between; font-size: 15px"><span>Matches the passport</span><strong>5.0</strong></div><span style="display: block; height: 8px; border-radius: 999px; background: #2E4239"><span style="display: block; height: 8px; width: 100%; border-radius: 999px; background: #F2A93B"></span></span></div>
+        <div style="display: flex; flex-direction: column; gap: 6px"><div style="display: flex; justify-content: space-between; font-size: 15px"><span>On-time pick-up</span><strong>4.7</strong></div><span style="display: block; height: 8px; border-radius: 999px; background: #2E4239"><span style="display: block; height: 8px; width: 94%; border-radius: 999px; background: #F2A93B"></span></span></div>
+        <div style="display: flex; flex-direction: column; gap: 6px"><div style="display: flex; justify-content: space-between; font-size: 15px"><span>Parent communication</span><strong>5.0</strong></div><span style="display: block; height: 8px; border-radius: 999px; background: #2E4239"><span style="display: block; height: 8px; width: 100%; border-radius: 999px; background: #F2A93B"></span></span></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 1px solid #2E4239">
+        <div style="display: flex; justify-content: space-between; font-size: 14px; gap: 12px; flex-wrap: wrap"><strong>Next: Star Guest</strong><span style="color: #C9D6CF">3 more good stays</span></div>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+          <span style="height: 10px; border-radius: 999px; background: #8FB7A3"></span>
+          <span style="height: 10px; border-radius: 999px; background: #F2A93B"></span>
+          <span style="height: 10px; border-radius: 999px; background: #2E4239"></span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; font-size: 13px; color: #C9D6CF; font-weight: 600"><span>New guest</span><span style="color: #FFFFFF">Good Guest</span><span>Star Guest</span></div>
+      </div>
+    </section>
+
+    <!-- Health -->
+    <section aria-labelledby="health-h" style="padding: 32px; border-radius: 28px; background: #F6F8F7; display: flex; flex-direction: column; gap: 16px">
+      <h2 id="health-h" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 26px">Health</h2>
+      <div style="display: flex; flex-direction: column">
+        <div style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #DCE4DF; font-size: 16px"><span>Rabies</span><span style="font-size: 14px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: #DDEBE2; color: #164735">Current · Apr 2027</span></div>
+        <div style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #DCE4DF; font-size: 16px"><span>DHPP</span><span style="font-size: 14px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: #DDEBE2; color: #164735">Current · Jan 2027</span></div>
+        <div style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #DCE4DF; font-size: 16px"><span>Bordetella</span><span style="font-size: 14px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: #FCEBCB; color: #6B4205">Renew by 31 Oct</span></div>
+        <div style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; font-size: 16px"><span>Medication</span><span style="color: #3F5249">None</span></div>
+      </div>
+      <div style="display: flex; gap: 12px; padding: 14px; border-radius: 14px; background: #FFFFFF; font-size: 15px; line-height: 1.5">
+        <svg style="flex: none" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E5B45" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="6" width="17" height="14" rx="2"></rect><path d="M9 6V4h6v2M12 10v6M9 13h6"></path></svg>
+        <span><strong>Vet:</strong> Clínica Veterinaria Laureles. Emergency care authorised up to $300. Microchip shown after you accept.</span>
+      </div>
+    </section>
+
+    <!-- Behaviour -->
+    <section aria-labelledby="beh-h" style="padding: 32px; border-radius: 28px; border: 1px solid #DCE4DF; display: flex; flex-direction: column; gap: 16px">
+      <h2 id="beh-h" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 26px">What to know</h2>
+      <div style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.5"><span style="flex: none; margin-top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #E39A1F"></span><span><strong>Anxious when left alone.</strong> Settles with her blanket and the radio on.</span></div>
+      <div style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.5"><span style="flex: none; margin-top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #E39A1F"></span><span><strong>Scared of loud noises.</strong> Keep her inside during storms or fireworks.</span></div>
+      <div style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.5"><span style="flex: none; margin-top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #1E5B45"></span><span><strong>Loves fetch</strong> and will play until told to stop. Needs a water break every 20 min.</span></div>
+    </section>
+
+    <!-- Routine -->
+    <section aria-labelledby="rt-h" style="padding: 32px; border-radius: 28px; border: 1px solid #DCE4DF; display: flex; flex-direction: column; gap: 4px">
+      <h2 id="rt-h" style="margin: 0 0 12px; font-family: 'Bricolage Grotesque', sans-serif; font-size: 26px">Daily routine</h2>
+      <div style="display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid #E6ECE8; font-size: 16px"><strong>Meals</strong><span>8:00 and 18:00 · 1 cup dry food (sent with her)</span></div>
+      <div style="display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid #E6ECE8; font-size: 16px"><strong>Walks</strong><span>2 × 30 min, harness, pulls a little at first</span></div>
+      <div style="display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid #E6ECE8; font-size: 16px"><strong>Potty</strong><span>Every 4 hours</span></div>
+      <div style="display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 12px 0; font-size: 16px"><strong>Naps</strong><span>In her crate with the door open, after lunch</span></div>
+    </section>
+  </div>
+
+  <!-- Host notes -->
+  <section aria-labelledby="notes-h" style="display: flex; flex-direction: column; gap: 18px">
+    <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: baseline">
+      <h2 id="notes-h" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 28px">What hosts said about Luna</h2>
+      <span style="font-size: 15px; color: #4F5F58">7 stays · 4 hosts</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
+      <article style="padding: 22px; border: 1px solid #DCE4DF; border-radius: 20px; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; justify-content: space-between; gap: 8px"><strong>Daniel K. · Trusted</strong><span style="font-size: 14px; color: #4F5F58">Full day · Sep 2026</span></div>
+        <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #2C3E36">Exactly as described. A bit nervous for the first 20 minutes, then played with my dog all afternoon.</p>
+        <span style="font-size: 13px; font-weight: 600; color: #1E5B45">Matches passport · Behaviour</span>
+      </article>
+      <article style="padding: 22px; border: 1px solid #DCE4DF; border-radius: 20px; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; justify-content: space-between; gap: 8px"><strong>Ana &amp; Tomás · Trusted</strong><span style="font-size: 14px; color: #4F5F58">Overnight · Aug 2026</span></div>
+        <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #2C3E36">Slept through the night in her crate. Pick-up was 40 minutes late but Valentina messaged ahead.</p>
+        <span style="font-size: 13px; font-weight: 600; color: #1E5B45">Communication · Late pick-up billed</span>
+      </article>
+      <article style="padding: 22px; border: 1px solid #DCE4DF; border-radius: 20px; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; justify-content: space-between; gap: 8px"><strong>Priya S. · Rising</strong><span style="font-size: 14px; color: #4F5F58">Drop-in · Jul 2026</span></div>
+        <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #2C3E36">Sweet girl. Barked at the doorbell once and calmed down quickly.</p>
+        <span style="font-size: 13px; font-weight: 600; color: #1E5B45">Behaviour</span>
+      </article>
+    </div>
+  </section>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

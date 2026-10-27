@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DogChain — Home</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&amp;family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFFFFF;color:#13261F;font-family:'Figtree',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#1E5B45;text-decoration:none}a:hover{color:#123B2C;text-decoration:underline}
+button{font-family:inherit;cursor:pointer}
+input{font-family:inherit}
+</style>
+</helmet>
+<div style="width: 100%; background: #FFFFFF; font-family: 'Figtree', system-ui, sans-serif; color: #13261F">
+
+<!-- Utility bar -->
+<div style="background: #13261F; color: #E6EFE9; font-size: 14px">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; justify-content: space-between">
+    <div style="display: flex; align-items: center; gap: 8px">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>
+      <span>Every booking is paid into escrow and released to the host at pick-up.</span>
+    </div>
+    <div style="display: flex; gap: 20px">
+      <a href="#hosts" style="color: #E6EFE9">Become a host</a>
+      <a href="#faq" style="color: #E6EFE9">Help centre</a>
+    </div>
+  </div>
+</div>
+
+<!-- Nav -->
+<header style="border-bottom: 1px solid #DCE4DF; background: #FFFFFF">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 16px 24px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between">
+    <a href="#top" style="display: flex; align-items: center; gap: 10px; color: #13261F; text-decoration: none">
+      <span style="width: 40px; height: 40px; border-radius: 12px; background: #1E5B45; display: flex; align-items: center; justify-content: center">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="10" r="2"></circle><circle cx="9.5" cy="5.5" r="2"></circle><circle cx="14.5" cy="5.5" r="2"></circle><circle cx="18.5" cy="10" r="2"></circle><path d="M12 11c-3 0-6 4.5-6 7a3 3 0 0 0 3 3c1.2 0 2-.6 3-.6s1.8.6 3 .6a3 3 0 0 0 3-3c0-2.5-3-7-6-7z"></path></svg>
+      </span>
+      <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -0.02em">DogChain</span>
+    </a>
+    <nav aria-label="Primary" style="display: flex; flex-wrap: wrap; gap: 8px 28px; font-weight: 600; font-size: 16px">
+      <a href="#stays" style="color: #13261F">Find a stay</a>
+      <a href="#hosts" style="color: #13261F">Become a host</a>
+      <a href="#reputation" style="color: #13261F">Trust &amp; reputation</a>
+      <a href="#pricing" style="color: #13261F">Fair pricing</a>
+    </nav>
+    <div style="display: flex; gap: 12px; align-items: center">
+      <a href="PetOnboarding.dc.html" style="padding: 12px 18px; border-radius: 999px; font-weight: 600; color: #13261F; border: 1px solid #C9D6CF">Sign in</a>
+      <a href="HostOnboarding.dc.html" style="padding: 12px 20px; border-radius: 999px; font-weight: 700; color: #FFFFFF; background: #1E5B45">List your space</a>
+    </div>
+  </div>
+</header>
+
+<!-- Hero -->
+<section id="top" style="background: #EEF4F0">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 72px 24px 88px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); gap: 56px; align-items: center">
+    <div style="display: flex; flex-direction: column; gap: 28px">
+      <span style="align-self: flex-start; display: inline-flex; gap: 8px; align-items: center; background: #FFFFFF; border: 1px solid #C9D6CF; border-radius: 999px; padding: 8px 14px; font-weight: 600; font-size: 14px; color: #1E5B45">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></svg>
+        Short stays · from one hour to one night
+      </span>
+      <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(40px, 5.4vw, 68px); line-height: 1.02; letter-spacing: -0.03em; color: #13261F">A safe, loving place for your pet — for a few hours or a night.</h1>
+      <p style="margin: 0; font-size: 20px; line-height: 1.55; color: #3F5249; max-width: 560px">Book verified neighbours with real pet spaces for the moments you can't bring them along: a work shift, a wedding, a flight, a doctor's visit.</p>
+
+      <!-- Search card -->
+      <form aria-label="Search stays" style="background: #FFFFFF; border-radius: 24px; padding: 20px; box-shadow: 0 1px 2px rgba(19,38,31,.06), 0 12px 32px rgba(19,38,31,.08); display: flex; flex-direction: column; gap: 16px">
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <sc-for list="{{durations}}" as="d" hint-placeholder-count="4">
+            <sc-if value="{{d.on}}" hint-placeholder-val="{{false}}">
+              <button type="button" onClick="{{d.pick}}" aria-pressed="true" style="min-height: 44px; padding: 10px 16px; border-radius: 999px; border: 1.5px solid #1E5B45; background: #1E5B45; color: #FFFFFF; font-weight: 600; font-size: 15px">{{d.label}}</button>
+            </sc-if>
+            <sc-if value="{{d.off}}" hint-placeholder-val="{{true}}">
+              <button type="button" onClick="{{d.pick}}" aria-pressed="false" style="min-height: 44px; padding: 10px 16px; border-radius: 999px; border: 1.5px solid #C9D6CF; background: #FFFFFF; color: #13261F; font-weight: 600; font-size: 15px">{{d.label}}</button>
+            </sc-if>
+          </sc-for>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px">
+          <label style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border: 1px solid #DCE4DF; border-radius: 14px; font-size: 13px; font-weight: 700; color: #3F5249">Where
+            <input type="text" placeholder="Neighbourhood or address" style="border: 0; outline: none; font-size: 16px; color: #13261F; padding: 2px 0; background: transparent">
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border: 1px solid #DCE4DF; border-radius: 14px; font-size: 13px; font-weight: 700; color: #3F5249">Drop-off
+            <input type="text" placeholder="Today, 9:00" style="border: 0; outline: none; font-size: 16px; color: #13261F; padding: 2px 0; background: transparent">
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border: 1px solid #DCE4DF; border-radius: 14px; font-size: 13px; font-weight: 700; color: #3F5249">Pick-up
+            <input type="text" placeholder="Today, 14:00" style="border: 0; outline: none; font-size: 16px; color: #13261F; padding: 2px 0; background: transparent">
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border: 1px solid #DCE4DF; border-radius: 14px; font-size: 13px; font-weight: 700; color: #3F5249">Guest
+            <input type="text" placeholder="Luna · medium dog" style="border: 0; outline: none; font-size: 16px; color: #13261F; padding: 2px 0; background: transparent">
+          </label>
+        </div>
+        <button type="button" style="min-height: 52px; border: 0; border-radius: 14px; background: #1E5B45; color: #FFFFFF; font-weight: 700; font-size: 17px; display: flex; align-items: center; justify-content: center; gap: 10px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="M20 20l-4.3-4.3"></path></svg>
+          Search {{durationLabel}} stays
+        </button>
+      </form>
+    </div>
+
+    <!-- Hero photo -->
+    <div style="position: relative; min-height: 560px">
+      <div role="img" aria-label="Photo placeholder: a golden retriever resting in a sunny, fenced garden with its host" style="position: absolute; inset: 0; border-radius: 32px; background: #C7DACF; overflow: hidden; display: flex; align-items: flex-end; padding: 24px">
+        <svg width="100%" height="100%" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="position: absolute; inset: 0" aria-hidden="true"><circle cx="300" cy="90" r="60" fill="#DDE9E1"></circle><path d="M0 300 C 90 250, 180 280, 260 250 S 400 230, 400 230 V400 H0z" fill="#A9C6B4"></path><path d="M0 340 C 120 300, 240 330, 400 300 V400 H0z" fill="#8DB39C"></path></svg>
+        <span style="position: relative; display: inline-flex; gap: 8px; align-items: center; background: rgba(255,255,255,.9); padding: 8px 12px; border-radius: 10px; font-size: 13px; font-weight: 600; color: #3F5249">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>
+          Photo: golden retriever in a host's fenced garden
+        </span>
+      </div>
+      <div style="position: absolute; top: 28px; left: -20px; background: #FFFFFF; border-radius: 18px; padding: 14px 16px; box-shadow: 0 12px 32px rgba(19,38,31,.14); display: flex; gap: 12px; align-items: center">
+        <span style="width: 44px; height: 44px; border-radius: 50%; background: #F6E3C1; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #7A4A06">MR</span>
+        <div style="display: flex; flex-direction: column; gap: 2px">
+          <strong style="font-size: 15px">Marisol R. · Pack Leader</strong>
+          <span style="display: flex; align-items: center; gap: 4px; font-size: 14px; color: #3F5249"><svg width="14" height="14" viewBox="0 0 24 24" fill="#E39A1F" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.3l-5.6 2.9 1.1-6.3L2.9 9.5l6.3-.9z"></path></svg>4.96 Paw Score · 212 stays</span>
+        </div>
+      </div>
+      <div style="position: absolute; bottom: 92px; right: -16px; background: #13261F; color: #FFFFFF; border-radius: 18px; padding: 14px 16px; box-shadow: 0 12px 32px rgba(19,38,31,.2); display: flex; gap: 12px; align-items: center; max-width: 260px">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F2A93B" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>
+        <span style="font-size: 14px; line-height: 1.4"><strong>Photo update · 11:42</strong><br>Luna finished lunch and is napping in the shade.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust strip -->
+<section aria-label="Why DogChain" style="border-bottom: 1px solid #DCE4DF">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 32px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px">
+    <div style="display: flex; gap: 14px; align-items: flex-start">
+      <span style="flex: none; width: 48px; height: 48px; border-radius: 14px; background: #EEF4F0; color: #1E5B45; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="9" cy="11" r="2.5"></circle><path d="M5.5 16.5c.8-1.5 2-2.2 3.5-2.2s2.7.7 3.5 2.2M15 10h3M15 13h3"></path></svg></span>
+      <div><strong style="display: block; font-size: 17px">ID-verified hosts</strong><span style="color: #4F5F58; font-size: 15px; line-height: 1.5">Identity and address checked before the first booking.</span></div>
+    </div>
+    <div style="display: flex; gap: 14px; align-items: flex-start">
+      <span style="flex: none; width: 48px; height: 48px; border-radius: 14px; background: #EEF4F0; color: #1E5B45; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"></path><path d="M5 10v10h14V10"></path><path d="M10 20v-5h4v5"></path></svg></span>
+      <div><strong style="display: block; font-size: 17px">Space safety check</strong><span style="color: #4F5F58; font-size: 15px; line-height: 1.5">Fences, hazards and escape points reviewed with photos.</span></div>
+    </div>
+    <div style="display: flex; gap: 14px; align-items: flex-start">
+      <span style="flex: none; width: 48px; height: 48px; border-radius: 14px; background: #EEF4F0; color: #1E5B45; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg></span>
+      <div><strong style="display: block; font-size: 17px">Payment held in escrow</strong><span style="color: #4F5F58; font-size: 15px; line-height: 1.5">Paid in USDC, released to the host when you pick up.</span></div>
+    </div>
+    <div style="display: flex; gap: 14px; align-items: flex-start">
+      <span style="flex: none; width: 48px; height: 48px; border-radius: 14px; background: #EEF4F0; color: #1E5B45; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></span>
+      <div><strong style="display: block; font-size: 17px">Photo check-ins</strong><span style="color: #4F5F58; font-size: 15px; line-height: 1.5">Arrival, meal and pick-up updates on every stay.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Stay types -->
+<section id="stays" style="padding: 96px 0 40px">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; gap: 40px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 12px; max-width: 640px">
+        <span style="font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: #1E5B45">Stays sized to your day</span>
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 4vw, 48px); line-height: 1.05; letter-spacing: -0.025em">Book exactly the time you need. Nothing more.</h2>
+      </div>
+      <a href="#pricing" style="font-weight: 700; display: inline-flex; align-items: center; gap: 6px">How prices are suggested <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px">
+      <article style="background: #EEF4F0; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+        <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 26px">Drop-in</span>
+        <span style="color: #3F5249; font-size: 16px; line-height: 1.5">1–3 hours. A meeting, an appointment, a quick errand.</span>
+        <span style="margin-top: auto; font-size: 15px; color: #3F5249">Suggested <strong style="font-size: 22px; color: #13261F">$10–16</strong> / hour</span>
+      </article>
+      <article style="background: #EEF4F0; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+        <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 26px">Half day</span>
+        <span style="color: #3F5249; font-size: 16px; line-height: 1.5">Up to 5 hours, with one meal and a walk included.</span>
+        <span style="margin-top: auto; font-size: 15px; color: #3F5249">Suggested <strong style="font-size: 22px; color: #13261F">$30–45</strong></span>
+      </article>
+      <article style="background: #EEF4F0; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+        <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 26px">Full day</span>
+        <span style="color: #3F5249; font-size: 16px; line-height: 1.5">Up to 10 hours. Workdays, events, day trips.</span>
+        <span style="margin-top: auto; font-size: 15px; color: #3F5249">Suggested <strong style="font-size: 22px; color: #13261F">$45–65</strong></span>
+      </article>
+      <article style="background: #13261F; color: #FFFFFF; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+        <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 26px">Overnight</span>
+        <span style="color: #C9D6CF; font-size: 16px; line-height: 1.5">Up to 24 hours. Early flights, late returns.</span>
+        <span style="margin-top: auto; font-size: 15px; color: #C9D6CF">Suggested <strong style="font-size: 22px; color: #FFFFFF">$55–85</strong></span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- How it works with tabs -->
+<section style="padding: 72px 0">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; gap: 36px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px">
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 4vw, 48px); letter-spacing: -0.025em">How it works</h2>
+      <div role="group" aria-label="Show steps for" style="display: inline-flex; background: #EEF4F0; padding: 6px; border-radius: 999px; gap: 4px">
+        <sc-for list="{{tabs}}" as="t" hint-placeholder-count="2">
+          <sc-if value="{{t.on}}" hint-placeholder-val="{{false}}">
+            <button type="button" onClick="{{t.pick}}" aria-pressed="true" style="min-height: 44px; padding: 10px 22px; border: 0; border-radius: 999px; background: #FFFFFF; color: #13261F; font-weight: 700; font-size: 16px; box-shadow: 0 1px 3px rgba(19,38,31,.12)">{{t.label}}</button>
+          </sc-if>
+          <sc-if value="{{t.off}}" hint-placeholder-val="{{true}}">
+            <button type="button" onClick="{{t.pick}}" aria-pressed="false" style="min-height: 44px; padding: 10px 22px; border: 0; border-radius: 999px; background: transparent; color: #3F5249; font-weight: 600; font-size: 16px">{{t.label}}</button>
+          </sc-if>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px">
+      <sc-for list="{{steps}}" as="s" hint-placeholder-count="4">
+        <div style="display: flex; flex-direction: column; gap: 14px; padding-top: 20px; border-top: 2px solid #13261F">
+          <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 44px; color: #1E5B45; line-height: 1">{{s.n}}</span>
+          <strong style="font-size: 20px">{{s.title}}</strong>
+          <span style="color: #4F5F58; font-size: 16px; line-height: 1.55">{{s.body}}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- Featured hosts -->
+<section style="background: #F6F8F7; padding: 88px 0">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; gap: 36px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <span style="font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: #1E5B45">Near you</span>
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 4vw, 48px); letter-spacing: -0.025em">Hosts with open spots today</h2>
+      </div>
+      <a href="HostProfile.dc.html" style="font-weight: 700">See all hosts</a>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 24px">
+      <sc-for list="{{hosts}}" as="h" hint-placeholder-count="4">
+        <a href="HostProfile.dc.html" style="display: flex; flex-direction: column; background: #FFFFFF; border-radius: 24px; overflow: hidden; color: #13261F; text-decoration: none; box-shadow: 0 1px 2px rgba(19,38,31,.06)">
+          <div role="img" aria-label="{{h.photo}}" style="position: relative; height: 200px; background: {{h.tint}}; display: flex; align-items: flex-end; padding: 14px">
+            <span style="position: absolute; top: 14px; left: 14px; background: #FFFFFF; color: #13261F; border-radius: 999px; padding: 6px 12px; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1E5B45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="5.5"></circle><path d="M8.5 13.5L7 21l5-2.5 5 2.5-1.5-7.5"></path></svg>{{h.tier}}
+            </span>
+            <span style="font-size: 12px; font-weight: 600; color: #3F5249; background: rgba(255,255,255,.85); padding: 4px 8px; border-radius: 8px">{{h.photo}}</span>
+          </div>
+          <div style="padding: 20px; display: flex; flex-direction: column; gap: 10px">
+            <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline">
+              <strong style="font-size: 18px">{{h.name}}</strong>
+              <span style="display: inline-flex; align-items: center; gap: 4px; font-weight: 700; font-size: 15px"><svg width="14" height="14" viewBox="0 0 24 24" fill="#E39A1F" aria-hidden="true"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.3l-5.6 2.9 1.1-6.3L2.9 9.5l6.3-.9z"></path></svg>{{h.score}}</span>
+            </div>
+            <span style="color: #4F5F58; font-size: 15px">{{h.space}} · {{h.where}}</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px">
+              <sc-for list="{{h.chips}}" as="c" hint-placeholder-count="3">
+                <span style="font-size: 13px; font-weight: 600; background: #EEF4F0; color: #1E5B45; padding: 5px 10px; border-radius: 999px">{{c}}</span>
+              </sc-for>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 10px; border-top: 1px solid #E6ECE8">
+              <span style="font-size: 15px; color: #4F5F58"><strong style="font-size: 18px; color: #13261F">{{h.price}}</strong> / hour</span>
+              <span style="font-size: 14px; color: #1E5B45; font-weight: 700">{{h.stays}} stays</span>
+            </div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- Reputation -->
+<section id="reputation" style="padding: 96px 0">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 56px; align-items: start">
+    <div style="display: flex; flex-direction: column; gap: 20px">
+      <span style="font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: #1E5B45">Trust &amp; reputation</span>
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 4vw, 48px); line-height: 1.05; letter-spacing: -0.025em">Reputation is earned stay by stay, on both sides.</h2>
+      <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #3F5249">Every completed booking closes with a two-way review. Hosts earn a <strong style="color: #13261F">Paw Score</strong> and climb tiers; pets earn a <strong style="color: #13261F">Good Guest</strong> record that helps them get accepted faster. Reviews only come from paid, completed stays, so they can't be bought or faked.</p>
+      <div style="display: flex; flex-direction: column; gap: 14px; background: #F6F8F7; border-radius: 24px; padding: 28px">
+        <strong style="font-size: 17px">What the Paw Score is made of</strong>
+        <sc-for list="{{scoreParts}}" as="p" hint-placeholder-count="5">
+          <div style="display: grid; grid-template-columns: 150px 1fr 44px; gap: 14px; align-items: center; font-size: 15px">
+            <span style="font-weight: 600">{{p.label}}</span>
+            <span style="height: 8px; border-radius: 999px; background: #DCE4DF; overflow: hidden; display: block"><span style="display: block; height: 100%; width: {{p.pct}}; background: #1E5B45; border-radius: 999px"></span></span>
+            <span style="color: #4F5F58; text-align: right">{{p.weight}}</span>
+          </div>
+        </sc-for>
+        <span style="font-size: 14px; color: #4F5F58; line-height: 1.5">Weights shown. Recent stays count more than older ones; a single stay can't move a score by more than 0.1.</span>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 14px">
+      <strong style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 24px">Host tiers</strong>
+      <sc-for list="{{tiers}}" as="t" hint-placeholder-count="4">
+        <div style="display: flex; gap: 18px; align-items: flex-start; padding: 22px; border-radius: 20px; border: 1px solid #DCE4DF; background: {{t.bg}}; color: {{t.fg}}">
+          <span style="flex: none; width: 52px; height: 52px; border-radius: 16px; background: {{t.badgeBg}}; color: {{t.badgeFg}}; display: flex; align-items: center; justify-content: center">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="5.5"></circle><path d="M8.5 13.5L7 21l5-2.5 5 2.5-1.5-7.5"></path></svg>
+          </span>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <strong style="font-size: 19px">{{t.name}}</strong>
+            <span style="font-size: 15px; line-height: 1.5; opacity: .9">{{t.rule}}</span>
+            <span style="font-size: 14px; font-weight: 700">{{t.perk}}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- Amenities -->
+<section style="background: #EEF4F0; padding: 88px 0">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; gap: 36px">
+    <div style="display: flex; flex-direction: column; gap: 12px; max-width: 680px">
+      <span style="font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: #1E5B45">Amenities</span>
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 4vw, 48px); line-height: 1.05; letter-spacing: -0.025em">Filter for the space your pet actually needs.</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
+      <div style="background: #FFFFFF; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E5B45" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V7l2-3 2 3v13M15 20V7l2-3 2 3v13M3 11h18M3 16h18"></path></svg>
+        <strong style="font-size: 17px">Fenced yard</strong><span style="font-size: 15px; color: #4F5F58">Fully enclosed, height listed</span>
+      </div>
+      <div style="background: #FFFFFF; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E5B45" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9"></path></svg>
+        <strong style="font-size: 17px">Climate controlled</strong><span style="font-size: 15px; color: #4F5F58">AC and heating indoors</span>
+      </div>
+      <div style="background: #FFFFFF; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E5B45" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>
+        <strong style="font-size: 17px">Live camera</strong><span style="font-size: 15px; color: #4F5F58">Watch from your phone</span>
+      </div>
+      <div style="background: #FFFFFF; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E5B45" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18" r="2"></circle><circle cx="18" cy="6" r="2"></circle><path d="M8 18h7a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h7"></path></svg>
+        <strong style="font-size: 17px">Walks included</strong><span style="font-size: 15px; color: #4F5F58">Leashed, logged with GPS</span>
+      </div>
+      <div style="background: #FFFFFF; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E5B45" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="6" width="17" height="14" rx="2"></rect><path d="M9 6V4h6v2M12 10v6M9 13h6"></path></svg>
+        <strong style="font-size: 17px">Pet first-aid trained</strong><span style="font-size: 15px; color: #4F5F58">Certificate on file</span>
+      </div>
+      <div style="background: #FFFFFF; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E5B45" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3"></path><path d="M3 18v-5a2 2 0 0 1 4 0v2h10v-2a2 2 0 0 1 4 0v5z"></path></svg>
+        <strong style="font-size: 17px">Quiet rest room</strong><span style="font-size: 15px; color: #4F5F58">Separate from other guests</span>
+      </div>
+      <div style="background: #FFFFFF; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E5B45" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h18a9 6 0 0 1-18 0z"></path><path d="M8 8c0-2 2-2 2-4M14 8c0-2 2-2 2-4"></path></svg>
+        <strong style="font-size: 17px">Special diets</strong><span style="font-size: 15px; color: #4F5F58">Meds and feeding schedules</span>
+      </div>
+      <div style="background: #FFFFFF; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E5B45" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
+        <strong style="font-size: 17px">Vet nearby</strong><span style="font-size: 15px; color: #4F5F58">Clinic within 2 km</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Fair pricing -->
+<section id="pricing" style="padding: 96px 0">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 56px; align-items: center">
+    <div style="display: flex; flex-direction: column; gap: 20px">
+      <span style="font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: #1E5B45">Fair pricing</span>
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 4vw, 48px); line-height: 1.05; letter-spacing: -0.025em">Fair to hosts. Clear for pet parents.</h2>
+      <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #3F5249">We suggest a price for every space from what it really offers: the kind of space, its amenities, the host's tier and local demand. Hosts can go above or below it, and parents always see the full price before booking.</p>
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.5"><svg style="flex: none; margin-top: 2px" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E5B45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span><strong>Hosts keep 90%</strong> of the stay price. The 10% service fee covers escrow, support and the stay guarantee.</span></div>
+        <div style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.5"><svg style="flex: none; margin-top: 2px" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E5B45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span><strong>Longer stays cost less per hour</strong>, so hosts are paid fairly without parents overpaying.</span></div>
+        <div style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.5"><svg style="flex: none; margin-top: 2px" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E5B45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span><strong>Late pick-up is billed per 30 minutes</strong>, at the agreed hourly rate, never a flat penalty.</span></div>
+      </div>
+    </div>
+    <div style="background: #13261F; color: #FFFFFF; border-radius: 28px; padding: 32px; display: flex; flex-direction: column; gap: 18px">
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
+        <strong style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px">Example suggestion</strong>
+        <span style="font-size: 13px; font-weight: 700; background: #F2A93B; color: #13261F; padding: 6px 10px; border-radius: 999px">Full day · 1 medium dog</span>
+      </div>
+      <div style="display: flex; flex-direction: column; font-size: 16px">
+        <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #2E4239"><span style="color: #C9D6CF">House with yard · base</span><span>$38.00</span></div>
+        <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #2E4239"><span style="color: #C9D6CF">Fenced yard</span><span>+ $6.00</span></div>
+        <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #2E4239"><span style="color: #C9D6CF">Walks included</span><span>+ $5.00</span></div>
+        <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #2E4239"><span style="color: #C9D6CF">Trusted host tier</span><span>+ 5%</span></div>
+        <div style="display: flex; justify-content: space-between; padding: 16px 0 4px; font-size: 20px"><strong>Suggested price</strong><strong>$51.45</strong></div>
+        <div style="display: flex; justify-content: space-between; padding: 4px 0; color: #C9D6CF; font-size: 15px"><span>Host receives (90%)</span><span>$46.31</span></div>
+      </div>
+      <a href="HostOnboarding.dc.html" style="margin-top: 6px; min-height: 52px; border-radius: 14px; background: #FFFFFF; color: #13261F; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px">Get a suggestion for your space <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- Become a host -->
+<section id="hosts" style="padding: 0 24px 96px">
+  <div style="max-width: 1240px; margin: 0 auto; border-radius: 32px; overflow: hidden; background: #1E5B45; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr))">
+    <div style="padding: 56px; display: flex; flex-direction: column; gap: 20px; color: #FFFFFF">
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 4vw, 52px); line-height: 1.02; letter-spacing: -0.025em">Have a pet-friendly space? Earn from the hours you're home.</h2>
+      <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #D8E6DE">Set your own hours, the pets you accept and how many at a time. Onboarding takes about 15 minutes; you're listed once your ID and space check are approved.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px">
+        <a href="HostOnboarding.dc.html" style="min-height: 52px; padding: 0 26px; border-radius: 999px; background: #FFFFFF; color: #13261F; font-weight: 700; display: inline-flex; align-items: center">Start hosting</a>
+        <a href="#reputation" style="min-height: 52px; padding: 0 26px; border-radius: 999px; border: 1.5px solid #8FB7A3; color: #FFFFFF; font-weight: 700; display: inline-flex; align-items: center">How tiers work</a>
+      </div>
+    </div>
+    <div role="img" aria-label="Photo placeholder: host playing fetch with two dogs in a backyard" style="min-height: 380px; background: #A9C6B4; display: flex; align-items: flex-end; padding: 24px">
+      <span style="font-size: 13px; font-weight: 600; color: #3F5249; background: rgba(255,255,255,.88); padding: 8px 12px; border-radius: 10px">Photo: host playing fetch with two dogs</span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="background: #F6F8F7; padding: 88px 0">
+  <div style="max-width: 880px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; gap: 28px">
+    <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 4vw, 44px); letter-spacing: -0.025em">Questions pet parents ask</h2>
+    <div style="display: flex; flex-direction: column">
+      <sc-for list="{{faqs}}" as="f" hint-placeholder-count="5">
+        <div style="border-bottom: 1px solid #DCE4DF">
+          <button type="button" onClick="{{f.toggle}}" aria-expanded="{{f.expanded}}" style="width: 100%; min-height: 64px; display: flex; justify-content: space-between; align-items: center; gap: 16px; background: transparent; border: 0; padding: 20px 0; text-align: left; font-size: 19px; font-weight: 700; color: #13261F">
+            <span>{{f.q}}</span>
+            <svg style="flex: none" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{f.icon}}"></path></svg>
+          </button>
+          <sc-if value="{{f.open}}" hint-placeholder-val="{{false}}">
+            <p style="margin: 0 0 22px; font-size: 17px; line-height: 1.6; color: #3F5249; max-width: 720px">{{f.a}}</p>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer style="background: #13261F; color: #C9D6CF; padding: 64px 0 40px">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; gap: 48px">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 32px">
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; color: #FFFFFF">DogChain</span>
+        <span style="font-size: 15px; line-height: 1.6">Short, safe stays for pets with verified neighbours.</span>
+      </div>
+      <nav aria-label="Pet parents" style="display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+        <strong style="color: #FFFFFF">Pet parents</strong>
+        <a href="#stays" style="color: #C9D6CF">Find a stay</a>
+        <a href="PetOnboarding.dc.html" style="color: #C9D6CF">Create a pet profile</a>
+        <a href="#reputation" style="color: #C9D6CF">Stay guarantee</a>
+      </nav>
+      <nav aria-label="Hosts" style="display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+        <strong style="color: #FFFFFF">Hosts</strong>
+        <a href="HostOnboarding.dc.html" style="color: #C9D6CF">List your space</a>
+        <a href="#pricing" style="color: #C9D6CF">Pricing guide</a>
+        <a href="#reputation" style="color: #C9D6CF">Host tiers</a>
+      </nav>
+      <nav aria-label="Company" style="display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+        <strong style="color: #FFFFFF">Support</strong>
+        <a href="#faq" style="color: #C9D6CF">Help centre</a>
+        <a href="#faq" style="color: #C9D6CF">Safety</a>
+        <a href="#faq" style="color: #C9D6CF">Terms &amp; privacy</a>
+      </nav>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 24px; border-top: 1px solid #2E4239; font-size: 14px">
+      <span>© 2026 DogChain</span>
+      <span>Payments settle in USDC on Base</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6200}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { duration: 'half', tab: 'parents', openFaq: 0 };
+  }
+  renderVals() {
+    const s = this.state;
+    const durDefs = [
+      { id: 'drop', label: 'Drop-in · 1–3 h' },
+      { id: 'half', label: 'Half day' },
+      { id: 'full', label: 'Full day' },
+      { id: 'night', label: 'Overnight' }
+    ];
+    const durations = durDefs.map((d) => ({
+      ...d, on: s.duration === d.id, off: s.duration !== d.id,
+      pick: () => this.setState({ duration: d.id })
+    }));
+    const durationLabel = { drop: 'drop-in', half: 'half-day', full: 'full-day', night: 'overnight' }[s.duration];
+
+    const tabs = [
+      { id: 'parents', label: 'For pet parents' },
+      { id: 'hosts', label: 'For hosts' }
+    ].map((t) => ({ ...t, on: s.tab === t.id, off: s.tab !== t.id, pick: () => this.setState({ tab: t.id }) }));
+
+    const steps = s.tab === 'parents' ? [
+      { n: '01', title: 'Create a pet passport', body: 'Vaccines, temperament, routine and vet contact, filled in once and shared with every host.' },
+      { n: '02', title: 'Pick a host and a time', body: 'Filter by amenities, pet size and tier. Request the hours you need, from one hour up.' },
+      { n: '03', title: 'Pay into escrow', body: 'Your USDC payment is held by the booking contract, not the host, until the stay ends.' },
+      { n: '04', title: 'Pick up and review', body: 'Confirm pick-up to release payment, then rate the stay. Your host rates your pet too.' }
+    ] : [
+      { n: '01', title: 'Verify and describe your space', body: 'ID check, photos of every room your guests use, and an honest list of amenities.' },
+      { n: '02', title: 'Set rules and a fair price', body: 'Choose pet sizes and how many at once. We suggest a price; you can adjust it.' },
+      { n: '03', title: 'Accept requests', body: 'Read each pet passport and Good Guest record before you say yes.' },
+      { n: '04', title: 'Get paid at pick-up', body: 'Payment is released the moment the parent confirms pick-up, or automatically after 12 hours.' }
+    ];
+
+    const hosts = [
+      { name: 'Marisol R.', tier: 'Pack Leader', score: '4.96', space: 'House with yard', where: '0.8 km', price: '$14', stays: 212, chips: ['Fenced yard', 'Live camera', 'Walks'], tint: '#C7DACF', photo: 'Photo: garden with shaded lawn' },
+      { name: 'Daniel K.', tier: 'Trusted', score: '4.88', space: 'Apartment, pet room', where: '1.2 km', price: '$11', stays: 64, chips: ['AC', 'Quiet room', 'Cats ok'], tint: '#E5DCCB', photo: 'Photo: bright pet room with beds' },
+      { name: 'Ana & Tomás', tier: 'Trusted', score: '4.91', space: 'Dedicated pet space', where: '2.0 km', price: '$15', stays: 97, chips: ['First-aid', 'Large dogs', 'Walks'], tint: '#D3DCE7', photo: 'Photo: converted studio, rubber floor' },
+      { name: 'Priya S.', tier: 'Rising', score: '4.80', space: 'House, no yard', where: '2.6 km', price: '$10', stays: 14, chips: ['Small dogs', 'Special diets'], tint: '#EAD7D2', photo: 'Photo: living room with crate area' }
+    ];
+
+    const scoreParts = [
+      { label: 'Pet care', weight: '30%', pct: '100%' },
+      { label: 'Safety', weight: '25%', pct: '83%' },
+      { label: 'Communication', weight: '20%', pct: '67%' },
+      { label: 'Space accuracy', weight: '15%', pct: '50%' },
+      { label: 'Cleanliness', weight: '10%', pct: '33%' }
+    ];
+
+    const tiers = [
+      { name: 'New Host', rule: 'ID and space check passed. Up to 1 guest at a time, stays up to 5 hours.', perk: 'Starts at the base suggested price', bg: '#FFFFFF', fg: '#13261F', badgeBg: '#EEF4F0', badgeFg: '#1E5B45' },
+      { name: 'Rising', rule: '5+ completed stays, Paw Score 4.5 or above, no safety incidents.', perk: 'Overnight stays unlocked', bg: '#FFFFFF', fg: '#13261F', badgeBg: '#DDEBE2', badgeFg: '#1E5B45' },
+      { name: 'Trusted', rule: '25+ stays, Paw Score 4.7+, replies within 1 hour, pet first-aid certificate.', perk: '+5% on suggested price · up to 3 guests', bg: '#FFFFFF', fg: '#13261F', badgeBg: '#1E5B45', badgeFg: '#FFFFFF' },
+      { name: 'Pack Leader', rule: '100+ stays, Paw Score 4.85+, under 1% cancellations over 12 months.', perk: '+12% on suggested price · featured in search', bg: '#13261F', fg: '#FFFFFF', badgeBg: '#F2A93B', badgeFg: '#13261F' }
+    ];
+
+    const faqDefs = [
+      { q: 'What happens if I am late for pick-up?', a: 'Your host is notified automatically. Extra time is billed per 30 minutes at the agreed hourly rate and added to the escrow before release.' },
+      { q: 'How is my payment protected?', a: 'You pay into the booking contract, not to the host. Funds are released only when you confirm pick-up, and refunded if the host cancels.' },
+      { q: 'Which pets can stay?', a: 'Dogs, cats and small pets, depending on each host. Every listing shows accepted species, sizes and how many guests the host takes at once.' },
+      { q: 'What if my pet needs medication?', a: 'Add doses and times to the pet passport. Hosts tagged "Special diets" have confirmed they can give oral medication on schedule.' },
+      { q: 'Can I meet the host first?', a: 'Yes. Request a free 15-minute meet-and-greet before your first booking with any host.' }
+    ];
+    const faqs = faqDefs.map((f, i) => ({
+      ...f, open: s.openFaq === i, expanded: s.openFaq === i ? 'true' : 'false',
+      icon: s.openFaq === i ? 'M6 15l6-6 6 6' : 'M6 9l6 6 6-6',
+      toggle: () => this.setState({ openFaq: s.openFaq === i ? -1 : i })
+    }));
+
+    return { durations, durationLabel, tabs, steps, hosts, scoreParts, tiers, faqs };
+  }
+}
+</script>
+</body>
+</html>
