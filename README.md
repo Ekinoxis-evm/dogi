@@ -1,7 +1,7 @@
 # Dogi
 
 Pet stays by the hour with verified neighbours — Laureles, Medellín first.
-The successor of DogChain (`../dogchain`, 2025): same idea, rebuilt without crypto.
+DogChain (2025, `../dogchain`) is the legacy version; Dogi is the app. Same idea, rebuilt without crypto.
 
 - **Live (planned):** https://dogi.ekinoxis.xyz
 - **Design:** https://claude.ai/artifact/WJYEt32jxc381VosF8czS4 (copies in `design/`), tokens in `DESIGN.md`
@@ -35,7 +35,10 @@ npm test                     # pricing + webhook unit tests
 npm run typecheck
 ```
 
-The migration is in `supabase/migrations/` and is **not applied** anywhere yet.
+Supabase project **`dogi`** (`zzshpuletvmzhrnlhysm`, sa-east-1, org Ekinoxis labs). The
+migration in `supabase/migrations/` is applied; `supabase db push` for new ones. The
+`dogi` schema is exposed to the API in `supabase/config.toml` and on the `authenticator`
+role (`pgrst.db_schemas`); after adding a table run `notify pgrst, 'reload schema'`.
 
 ## Before going live
 
