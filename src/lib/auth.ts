@@ -25,8 +25,15 @@ export interface Profile {
   id: string
   privy_did: string
   first_name: string | null
+  last_name?: string | null
+  phone?: string | null
+  phone_country_code?: string | null
+  email?: string | null
+  city?: string | null
+  neighbourhood?: string | null
   locale: 'es' | 'en'
   is_host: boolean
+  onboarding_completed?: boolean
 }
 
 /**
@@ -48,7 +55,7 @@ export async function requireUser(req: Request): Promise<Profile> {
   const { data, error } = await db()
     .from('profiles')
     .upsert({ privy_did: did }, { onConflict: 'privy_did', ignoreDuplicates: false })
-    .select('id, privy_did, first_name, locale, is_host')
+    .select('id, privy_did, first_name, last_name, phone, phone_country_code, email, city, neighbourhood, locale, is_host, onboarding_completed')
     .single()
   if (error) throw error
   return data as Profile

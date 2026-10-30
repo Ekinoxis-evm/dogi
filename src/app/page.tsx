@@ -1,10 +1,11 @@
 import Link from 'next/link'
+import { CityMapHero } from '@/components/CityMapHero'
 import { formatMoney, pesosToMinor } from '@/lib/money'
 import { SPACE_BASE_COP, STAY_RULES, quoteStay, suggestedHourly, hourlyRate } from '@/lib/pricing'
 import { PAW_WEIGHTS } from '@/lib/reputation'
-import { getLiveListings, type ListingCard } from './stays/listing-data'
+import { getLiveListings } from './stays/listing-data'
 import {
-  AmenityIcon, CATEGORY_LABEL, Eyebrow, ICONS, Icon, SPACE_LABEL, Star, TierBadge, score,
+  AmenityIcon, CATEGORY_LABEL, Eyebrow, ICONS, Icon, TierBadge,
 } from './stays/ui'
 
 // Data is cached for about a minute inside getLiveListings ('use cache' + cacheLife).
@@ -78,147 +79,75 @@ export default async function Home() {
         </div>
       </div>
 
-      {/* Hero */}
-      <section className="bg-sunk">
-        <div className="mx-auto grid max-w-[1240px] items-center gap-14 px-4 pb-20 pt-16 sm:px-6 lg:grid-cols-2">
-          <div className="flex flex-col gap-7">
-            <span className="inline-flex items-center gap-2 self-start rounded-full border border-line-strong bg-surface px-3.5 py-2 text-sm font-semibold text-brand">
-              <Icon d={ICONS.clock} size={16} />
-              Estadías cortas · desde una hora hasta una noche
-            </span>
-            <h1 className="font-display text-5xl font-extrabold leading-none tracking-tight text-ink sm:text-6xl">
-              Un lugar seguro y cariñoso para tu mascota, por unas horas o una noche.
-            </h1>
-            <p className="max-w-xl text-lg leading-relaxed text-ink-2 sm:text-xl">
-              Reserva con vecinos verificados que tienen un espacio real para mascotas, para esos momentos en que no
-              puedes llevarla: un turno de trabajo, un matrimonio, un vuelo, una cita médica.
-            </p>
-
-            <form action="#anfitriones" aria-label="Buscar estadías" className="flex flex-col gap-4 rounded-xl bg-surface p-5 shadow-raised">
-              <fieldset className="flex flex-wrap gap-2">
-                <legend className="sr-only">¿Cuánto tiempo?</legend>
-                {['Por horas · 1–4 h', 'Medio día', 'Día completo', 'Noche'].map((label, i) => (
-                  <label key={label}
-                    className="inline-flex min-h-11 cursor-pointer items-center rounded-full border border-line-strong px-4 text-[15px] font-semibold text-ink-2 has-[:checked]:border-brand has-[:checked]:bg-brand has-[:checked]:text-white has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-brand">
-                    <input type="radio" name="estadia" value={i} defaultChecked={i === 1} className="sr-only" />
-                    {label}
-                  </label>
-                ))}
-              </fieldset>
-              <button type="submit"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand px-6 text-base font-bold text-white hover:bg-brand-hover">
-                <Icon d={ICONS.search} size={20} />
-                Ver anfitriones disponibles
-              </button>
-            </form>
-          </div>
-
-          <div className="relative">
-            <div role="img" aria-label="Ilustración: un jardín soleado y cercado"
-              className="relative aspect-square overflow-hidden rounded-2xl bg-brand-tint">
-              <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 h-full w-full" aria-hidden="true">
-                <circle cx="300" cy="90" r="60" className="fill-amber-tint" />
-                <path d="M0 300 C 90 250, 180 280, 260 250 S 400 230, 400 230 V400 H0z" className="fill-line-strong" />
-                <path d="M0 340 C 120 300, 240 330, 400 300 V400 H0z" className="fill-brand/40" />
-              </svg>
-            </div>
-            <div className="absolute -bottom-6 left-4 right-4 flex items-start gap-3 rounded-lg bg-surface p-4 shadow-pop sm:left-auto sm:right-6 sm:max-w-xs">
-              <Icon d={ICONS.camera} size={28} className="shrink-0 text-amber-deep" />
-              <span className="text-sm leading-snug text-ink-2">
-                <strong className="text-ink">Mensajes durante la estadía</strong>
-                <br />
-                Tu anfitrión te cuenta cómo va: llegada, comida y recogida.
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Trust strip */}
-      <section aria-label="Por qué Dogi" className="border-b border-line">
-        <div className="mx-auto grid max-w-[1240px] gap-6 px-4 py-8 sm:grid-cols-2 sm:px-6 lg:grid-cols-4">
-          {[
-            { icon: ICONS.id, title: 'Anfitriones verificados', body: 'Revisamos identidad y dirección antes de la primera reserva.' },
-            { icon: ICONS.home, title: 'Espacio revisado', body: 'Cercas, riesgos y salidas revisados con fotos.' },
-            { icon: ICONS.lock, title: 'Pago seguro', body: 'Tarjeta, PSE o Nequi con Mercado Pago. Sin efectivo.' },
-            { icon: ICONS.camera, title: 'Siempre al tanto', body: 'Chat con el anfitrión en cada reserva.' },
-          ].map((t) => (
-            <div key={t.title} className="flex items-start gap-3.5">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-sunk text-brand">
-                <Icon d={t.icon} size={24} />
-              </span>
-              <div>
-                <strong className="block text-[17px]">{t.title}</strong>
-                <span className="text-[15px] leading-normal text-muted">{t.body}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Stay types */}
-      <section id="estadias" className="pb-10 pt-24">
-        <div className="mx-auto flex max-w-[1240px] flex-col gap-10 px-4 sm:px-6">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div className="flex max-w-2xl flex-col gap-3">
-              <Eyebrow>Estadías a la medida de tu día</Eyebrow>
-              <h2 className="font-display text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
-                Reserva justo el tiempo que necesitas. Nada más.
-              </h2>
-            </div>
-            <a href="#precios" className="inline-flex min-h-11 items-center gap-1.5 font-bold">
-              Cómo sugerimos los precios <Icon d={ICONS.arrow} size={18} />
-            </a>
-          </div>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {STAY_TYPES.map((s) => (
-              <article key={s.title}
-                className={`flex flex-col gap-3.5 rounded-xl p-7 ${s.dark ? 'bg-ink text-white' : 'bg-sunk text-ink'}`}>
-                <span className="font-display text-[26px] font-bold">{s.title}</span>
-                <span className={`text-base leading-normal ${s.dark ? 'text-line' : 'text-muted'}`}>{s.body}</span>
-                <span className={`mt-auto text-[15px] ${s.dark ? 'text-line' : 'text-muted'}`}>
-                  Sugerido <strong className={`text-lg ${s.dark ? 'text-white' : 'text-ink'}`}>{s.price}</strong> {s.unit}
+      {/* Interactive Hero with City Selector & Map, wrapping Trust, Stays & How-it-works */}
+      <CityMapHero initialListings={listings}>
+        {/* Trust strip */}
+        <section aria-label="Por qué Dogi" className="border-b border-line">
+          <div className="mx-auto grid max-w-[1240px] gap-6 px-4 py-8 sm:grid-cols-2 sm:px-6 lg:grid-cols-4">
+            {[
+              { icon: ICONS.id, title: 'Anfitriones verificados', body: 'Revisamos identidad y dirección antes de la primera reserva.' },
+              { icon: ICONS.home, title: 'Espacio revisado', body: 'Cercas, riesgos y salidas revisados con fotos.' },
+              { icon: ICONS.lock, title: 'Pago seguro', body: 'Tarjeta, PSE o Nequi con Mercado Pago. Sin efectivo.' },
+              { icon: ICONS.camera, title: 'Siempre al tanto', body: 'Chat con el anfitrión en cada reserva.' },
+            ].map((t) => (
+              <div key={t.title} className="flex items-start gap-3.5">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-sunk text-brand">
+                  <Icon d={t.icon} size={24} />
                 </span>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section className="py-18">
-        <div className="mx-auto flex max-w-[1240px] flex-col gap-9 px-4 sm:px-6">
-          <h2 className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl">Cómo funciona</h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {STEPS.map((s) => (
-              <div key={s.n} className="flex flex-col gap-3.5 border-t-2 border-ink pt-5">
-                <span className="font-display text-[44px] font-extrabold leading-none text-brand">{s.n}</span>
-                <strong className="text-xl">{s.title}</strong>
-                <span className="text-base leading-relaxed text-muted">{s.body}</span>
+                <div>
+                  <strong className="block text-[17px]">{t.title}</strong>
+                  <span className="text-[15px] leading-normal text-muted">{t.body}</span>
+                </div>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Hosts */}
-      <section id="anfitriones" className="scroll-mt-4 bg-canvas py-22">
-        <div className="mx-auto flex max-w-[1240px] flex-col gap-9 px-4 sm:px-6">
-          <div className="flex flex-col gap-3">
-            <Eyebrow>Cerca de ti</Eyebrow>
-            <h2 className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl">
-              {listings.length ? 'Anfitriones con cupo' : 'Muy pronto, anfitriones cerca de ti'}
-            </h2>
-          </div>
-          {listings.length ? (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {listings.map((l) => <HostCard key={l.id} l={l} />)}
+        {/* Stay types */}
+        <section id="estadias" className="pb-10 pt-24">
+          <div className="mx-auto flex max-w-[1240px] flex-col gap-10 px-4 sm:px-6">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div className="flex max-w-2xl flex-col gap-3">
+                <Eyebrow>Estadías a la medida de tu día</Eyebrow>
+                <h2 className="font-display text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
+                  Reserva justo el tiempo que necesitas. Nada más.
+                </h2>
+              </div>
+              <a href="#precios" className="inline-flex min-h-11 items-center gap-1.5 font-bold">
+                Cómo sugerimos los precios <Icon d={ICONS.arrow} size={18} />
+              </a>
             </div>
-          ) : (
-            <EmptyHosts />
-          )}
-        </div>
-      </section>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {STAY_TYPES.map((s) => (
+                <article key={s.title}
+                  className={`flex flex-col gap-3.5 rounded-xl p-7 ${s.dark ? 'bg-ink text-white' : 'bg-sunk text-ink'}`}>
+                  <span className="font-display text-[26px] font-bold">{s.title}</span>
+                  <span className={`text-base leading-normal ${s.dark ? 'text-line' : 'text-muted'}`}>{s.body}</span>
+                  <span className={`mt-auto text-[15px] ${s.dark ? 'text-line' : 'text-muted'}`}>
+                    Sugerido <strong className={`text-lg ${s.dark ? 'text-white' : 'text-ink'}`}>{s.price}</strong> {s.unit}
+                  </span>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* How it works */}
+        <section className="py-18">
+          <div className="mx-auto flex max-w-[1240px] flex-col gap-9 px-4 sm:px-6">
+            <h2 className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl">Cómo funciona</h2>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {STEPS.map((s) => (
+                <div key={s.n} className="flex flex-col gap-3.5 border-t-2 border-ink pt-5">
+                  <span className="font-display text-[44px] font-extrabold leading-none text-brand">{s.n}</span>
+                  <strong className="text-xl">{s.title}</strong>
+                  <span className="text-base leading-relaxed text-muted">{s.body}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </CityMapHero>
 
       {/* Reputation */}
       <section id="reputacion" className="py-24">
@@ -408,69 +337,6 @@ export default async function Home() {
           </div>
         </div>
       </footer>
-    </div>
-  )
-}
-
-function HostCard({ l }: { l: ListingCard }) {
-  return (
-    <Link href={`/stays/${l.id}`}
-      className="group flex flex-col overflow-hidden rounded-xl bg-surface text-ink shadow-card hover:text-ink hover:no-underline hover:shadow-raised">
-      <div className="relative h-50 bg-brand-tint">
-        {l.photoUrl && (
-          // eslint-disable-next-line @next/next/no-img-element -- storage URLs; next.config has no remotePatterns yet
-          <img src={l.photoUrl} alt={`Espacio de ${l.hostFirstName} en ${l.neighbourhood}`} className="h-full w-full object-cover" />
-        )}
-        <TierBadge tier={l.tier} className="absolute left-3.5 top-3.5 shadow-card" />
-      </div>
-      <div className="flex flex-1 flex-col gap-2.5 p-5">
-        <div className="flex items-baseline justify-between gap-2">
-          <strong className="text-lg group-hover:underline">{l.hostFirstName}</strong>
-          <span className="inline-flex items-center gap-1 text-[15px] font-bold">
-            <Star />
-            {l.reviews ? score(l.pawScore) : 'Nuevo'}
-          </span>
-        </div>
-        <span className="text-[15px] text-muted">{SPACE_LABEL[l.space]} · {l.neighbourhood}</span>
-        {l.amenities.length > 0 && (
-          <div className="flex flex-wrap gap-1.5">
-            {l.amenities.slice(0, 3).map((a) => (
-              <span key={a.id} className="rounded-full bg-sunk px-2.5 py-1 text-[13px] font-semibold text-brand">{a.label}</span>
-            ))}
-          </div>
-        )}
-        <div className="mt-auto flex items-center justify-between border-t border-sunk-2 pt-2.5">
-          <span className="text-[15px] text-muted">
-            <strong className="text-lg text-ink">{formatMoney(l.hourlyMinor, 'COP')}</strong> / hora
-          </span>
-          <span className="text-sm font-bold text-brand">{l.stays} {l.stays === 1 ? 'estadía' : 'estadías'}</span>
-        </div>
-      </div>
-    </Link>
-  )
-}
-
-function EmptyHosts() {
-  return (
-    <div className="flex flex-col items-start gap-5 rounded-xl border border-line bg-surface p-8 shadow-card sm:p-12">
-      <span className="flex h-14 w-14 items-center justify-center rounded-lg bg-brand-tint text-brand">
-        <Icon d={ICONS.home} size={28} />
-      </span>
-      <h3 className="font-display text-3xl font-extrabold tracking-tight">Estamos abriendo en Laureles</h3>
-      <p className="max-w-2xl text-lg leading-relaxed text-ink-2">
-        Estamos verificando a los primeros anfitriones del barrio. Si tienes un espacio para mascotas y pasas tiempo
-        en casa, sé de los primeros en recibir huéspedes.
-      </p>
-      <div className="flex flex-wrap gap-3">
-        <Link href="/host/onboarding"
-          className="inline-flex min-h-12 items-center rounded-full bg-brand px-6 font-bold text-white hover:bg-brand-hover hover:text-white">
-          Quiero ser anfitrión
-        </Link>
-        <Link href="/pets/new"
-          className="inline-flex min-h-12 items-center rounded-full border border-line-strong bg-surface px-6 font-bold text-ink hover:bg-sunk hover:text-ink">
-          Crea el pasaporte de tu mascota
-        </Link>
-      </div>
     </div>
   )
 }

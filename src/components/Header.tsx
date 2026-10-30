@@ -12,6 +12,9 @@ export default function Header() {
           <PawLogo />
         </Link>
         <nav className="flex items-center gap-2 text-[15px] font-semibold">
+          <Link href="/onboarding" className="hidden rounded-full px-4 py-2.5 text-ink hover:bg-sunk hover:no-underline sm:inline-block">
+            Mi registro
+          </Link>
           <Link href="/host/onboarding" className="hidden rounded-full px-4 py-2.5 text-ink hover:bg-sunk hover:no-underline sm:inline-block">
             Hospeda mascotas
           </Link>
